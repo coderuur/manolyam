@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>lily_bouquet</title>
+  <title>manolyam</title>
   
   <!-- Fotoğraftan Üretilen Çoklu Çözünürlüklü Favicon / Logo -->
   <link rel="icon" type="image/x-icon" href="./favicon.ico">
@@ -68,20 +68,20 @@
     }
 
     /* ===================================================
-       SAĞ ALT: AŞK MEKTUBU BUTONU
+       SAĞ ÜST: SANA BİR MEKTUP VAR BUTONU (MOBİLDE KUSURSUZ)
        =================================================== */
     .letter-btn {
       position: absolute;
-      bottom: 24px;
-      right: 24px;
+      top: 22px;
+      right: 22px;
       z-index: 20;
     }
 
     .glass-btn {
-      background: rgba(35, 15, 28, 0.55);
+      background: rgba(35, 15, 28, 0.60);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255, 160, 200, 0.3);
+      border: 1px solid rgba(255, 160, 200, 0.35);
       border-radius: 30px;
       padding: 9px 20px;
       color: #ffe5ef;
@@ -91,15 +91,15 @@
       align-items: center;
       gap: 9px;
       cursor: pointer;
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 105, 180, 0.15);
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), 0 0 15px rgba(255, 105, 180, 0.20);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .glass-btn:hover {
-      background: rgba(85, 25, 60, 0.75);
-      border-color: rgba(255, 180, 220, 0.6);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 105, 180, 0.35);
+      background: rgba(85, 25, 60, 0.80);
+      border-color: rgba(255, 180, 220, 0.65);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 105, 180, 0.40);
       color: #fff;
     }
 
@@ -107,8 +107,9 @@
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(8, 4, 12, 0.75);
-      backdrop-filter: blur(8px);
+      background: rgba(6, 3, 10, 0.80);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 100;
       display: none;
       align-items: center;
@@ -135,8 +136,8 @@
       border-radius: 8px;
       padding: 34px 28px 28px 28px;
       box-shadow: 
-        0 25px 60px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(255, 120, 160, 0.35);
+        0 25px 60px rgba(0, 0, 0, 0.85),
+        0 0 45px rgba(255, 120, 160, 0.38);
       position: relative;
       border: 1px solid #ebd9c8;
       transform: scale(0.92) translateY(20px);
@@ -145,6 +146,30 @@
 
     .modal-backdrop.open .love-letter-card {
       transform: scale(1) translateY(0);
+    }
+
+    /* Nostaljik Romantik Aşk Pulu (Fotoğrafınız) */
+    .letter-stamp {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      width: 44px;
+      height: 52px;
+      background: #fff;
+      padding: 3px;
+      border: 1px dashed #d4a5b5;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transform: rotate(-4deg);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    .letter-stamp img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: contrast(1.05);
     }
 
     .letter-wax-seal {
@@ -231,26 +256,40 @@
       50% { opacity: 0.9; }
     }
 
-    /* MOBİL UYUMLULUK */
+    /* MOBİL KUSURSUZ UYUMLULUK */
     @media (max-width: 640px) {
       .letter-btn {
-        bottom: 16px;
+        top: 16px;
         right: 16px;
       }
       .glass-btn {
-        padding: 7px 15px;
+        padding: 8px 16px;
         font-size: 15px;
       }
+      .love-letter-card {
+        padding: 30px 20px 22px 20px;
+        max-width: 92vw;
+      }
       .letter-title {
-        font-size: 28px;
+        font-size: 27px;
+        margin-top: 8px;
+        margin-bottom: 12px;
       }
       .letter-body {
-        font-size: 19px;
-        padding: 14px;
+        font-size: 18px;
+        padding: 14px 10px;
+        line-height: 1.5;
+      }
+      .letter-stamp {
+        width: 38px;
+        height: 46px;
+        top: 12px;
+        left: 14px;
       }
       .bottom-hint {
-        bottom: 14px;
+        bottom: 16px;
         font-size: 14px;
+        width: 92%;
       }
     }
   </style>
@@ -266,7 +305,7 @@
   <!-- Romantik Işık & Ambiyans -->
   <div class="ambient-glow"></div>
 
-  <!-- SAĞ ALT: SANA BİR MEKTUP VAR BUTONU -->
+  <!-- SAĞ ÜST: SANA BİR MEKTUP VAR BUTONU -->
   <div class="letter-btn">
     <button class="glass-btn" id="openLetterBtn">
       <span>💌 Sana Bir Mektup Var</span>
@@ -278,9 +317,12 @@
     Manolyaların yeniden açması için ekrana dokun
   </div>
 
-  <!-- AŞK MEKTUBU MODALI (Özel Şiir & Not) -->
+  <!-- AŞK MEKTUBU MODALI (Özel Şiir & Nostaljik Pul) -->
   <div class="modal-backdrop" id="letterModal">
     <div class="love-letter-card">
+      <div class="letter-stamp" title="balımmmmm">
+        <img src="./foto.jpg" alt="biz">
+      </div>
       <div class="letter-wax-seal">✉</div>
       <button class="letter-close" id="closeLetterBtn">&times;</button>
       <div class="letter-title">Sana Bir Mektup Var</div>
@@ -319,27 +361,27 @@ Seni çok seviyorum balımmmmm.</div>
     const bgCustomText = 'BALIMMMMM';
 
     // =========================================================
-    // MANOLYA ÇİÇEK BUKETİ (Soulangeana, Grandiflora, Nigra)
+    // PARLAK & BELİRGİN MANOLYA ÇİÇEK BUKETİ
     // =========================================================
     const bouquet = [
-      // 1. Merkez: Klasik Pembe-Porselen Manolya (Magnolia Soulangeana)
-      { x:  0.00, y:  0.34, z:  0.22, rx: -0.15, ry:  0.00, rot: 0.10, s: 0.36, c: [230,  55, 115], mid: [255, 225, 235], tip: [255, 255, 255], d: 0.00 },
-      // 2. Sol Orta: Şarap & Mor Manolya (Magnolia Nigra)
-      { x: -0.28, y:  0.06, z:  0.34, rx: -0.05, ry: -0.22, rot: 0.35, s: 0.35, c: [215,  35,  90], mid: [250, 160, 195], tip: [255, 240, 248], d: 0.25 },
-      // 3. Sağ Orta: Saf Porselen Beyazı Yıldız Manolyası (Magnolia Stellata)
-      { x:  0.29, y:  0.02, z:  0.32, rx: -0.05, ry:  0.22, rot: 0.20, s: 0.36, c: [240, 218, 228], mid: [255, 248, 250], tip: [255, 255, 255], d: 0.40 },
+      // 1. Merkez: Canlı Gül & Saf Porselen Manolya (Soulangeana)
+      { x:  0.00, y:  0.34, z:  0.22, rx: -0.15, ry:  0.00, rot: 0.10, s: 0.38, c: [255,  55, 125], mid: [255, 225, 238], tip: [255, 255, 255], d: 0.00 },
+      // 2. Sol Orta: Şarap & Mor Kadife Manolya (Nigra)
+      { x: -0.28, y:  0.06, z:  0.34, rx: -0.05, ry: -0.22, rot: 0.35, s: 0.37, c: [230,  30,  95], mid: [255, 155, 195], tip: [255, 245, 250], d: 0.25 },
+      // 3. Sağ Orta: Saf Porselen Beyazı Yıldız Manolyası (Stellata)
+      { x:  0.29, y:  0.02, z:  0.32, rx: -0.05, ry:  0.22, rot: 0.20, s: 0.38, c: [250, 225, 235], mid: [255, 250, 252], tip: [255, 255, 255], d: 0.40 },
       // 4. Ön Alt: Narin Şeftali & Krem Manolya
-      { x:  0.00, y: -0.20, z:  0.44, rx:  0.12, ry:  0.02, rot: 0.45, s: 0.33, c: [245, 105, 115], mid: [255, 215, 210], tip: [255, 250, 245], d: 0.55 },
+      { x:  0.00, y: -0.20, z:  0.44, rx:  0.12, ry:  0.02, rot: 0.45, s: 0.35, c: [255, 110, 125], mid: [255, 220, 215], tip: [255, 252, 248], d: 0.55 },
       // 5. Sol Alt: Masum Pudra Pembesi Manolya
-      { x: -0.45, y: -0.15, z:  0.15, rx:  0.05, ry: -0.35, rot: 0.15, s: 0.28, c: [235,  90, 145], mid: [255, 205, 225], tip: [255, 250, 252], d: 0.70 },
+      { x: -0.45, y: -0.15, z:  0.15, rx:  0.05, ry: -0.35, rot: 0.15, s: 0.30, c: [245,  95, 155], mid: [255, 210, 230], tip: [255, 252, 255], d: 0.70 },
       // 6. Sağ Üst: Koyu Kadife Gül Manolyası
-      { x:  0.46, y:  0.18, z:  0.14, rx: -0.10, ry:  0.35, rot: 0.50, s: 0.28, c: [210,  30,  75], mid: [245, 135, 170], tip: [255, 230, 242], d: 0.65 },
+      { x:  0.46, y:  0.18, z:  0.14, rx: -0.10, ry:  0.35, rot: 0.50, s: 0.30, c: [225,  35,  85], mid: [255, 145, 180], tip: [255, 235, 245], d: 0.65 },
       // 7. Sol Üst: Açık Pembe İpek Manolya
-      { x: -0.24, y:  0.44, z: -0.04, rx: -0.22, ry: -0.18, rot: 0.25, s: 0.26, c: [240, 125, 170], mid: [255, 215, 235], tip: [255, 255, 255], d: 0.85 },
+      { x: -0.24, y:  0.44, z: -0.04, rx: -0.22, ry: -0.18, rot: 0.25, s: 0.28, c: [250, 130, 180], mid: [255, 220, 240], tip: [255, 255, 255], d: 0.85 },
       // 8. Sağ Tepe: Şampanya Porselen Manolya
-      { x:  0.26, y:  0.42, z: -0.05, rx: -0.22, ry:  0.20, rot: 0.40, s: 0.26, c: [245, 135, 115], mid: [255, 230, 215], tip: [255, 255, 250], d: 0.90 },
+      { x:  0.26, y:  0.42, z: -0.05, rx: -0.22, ry:  0.20, rot: 0.40, s: 0.28, c: [255, 145, 125], mid: [255, 235, 220], tip: [255, 255, 252], d: 0.90 },
       // 9. Sağ Alt: Derin Aşk Manolyası
-      { x:  0.41, y: -0.26, z:  0.18, rx:  0.15, ry:  0.32, rot: 0.05, s: 0.26, c: [225,  40,  70], mid: [250, 160, 180], tip: [255, 240, 245], d: 1.00 }
+      { x:  0.41, y: -0.26, z:  0.18, rx:  0.15, ry:  0.32, rot: 0.05, s: 0.28, c: [240,  45,  80], mid: [255, 165, 185], tip: [255, 245, 248], d: 1.00 }
     ];
 
     function setup() {
@@ -371,12 +413,15 @@ Seni çok seviyorum balımmmmm.</div>
       }
 
       initParticles();
+      initSparkles();
     }
 
     function put(wx, wy, wz, ch, r, g, b) {
-      const scale = Math.min(w, h) * 0.46;
+      // Mobilde çiçekleri daha büyük (+18%) ve belirgin göster
+      const isMobile = w < 640;
+      const scale = isMobile ? Math.min(w, h) * 0.54 : Math.min(w, h) * 0.49;
       const sx = Math.floor((w * 0.5 + wx * scale) / CW);
-      const sy = Math.floor((h * 0.52 - wy * scale) / CH);
+      const sy = Math.floor((h * (isMobile ? 0.53 : 0.51) - wy * scale) / CH);
       if (sx < 0 || sx >= cols || sy < 0 || sy >= rows) return;
 
       const i = sy * cols + sx;
@@ -429,7 +474,7 @@ Seni çok seviyorum balımmmmm.</div>
           const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(shade * (CHARS.length - 2)))];
 
           const wx = x + sway * (y > pinchY ? (y - pinchY) * 0.45 : 0);
-          put(wx, y, -0.35 + fold * 0.05, ch, 205 * shade, 145 * shade, 130 * shade);
+          put(wx, y, -0.35 + fold * 0.05, ch, 210 * shade, 150 * shade, 135 * shade);
         }
       }
 
@@ -454,7 +499,7 @@ Seni çok seviyorum balımmmmm.</div>
           const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(shade * (CHARS.length - 1)))];
 
           const wx = x + sway * (y > pinchY ? (y - pinchY) * 0.3 : 0);
-          put(wx, y, 0.34 + (1 - Math.abs(nx)) * 0.04, ch, 235 * shade, 175 * shade, 155 * shade);
+          put(wx, y, 0.34 + (1 - Math.abs(nx)) * 0.04, ch, 240 * shade, 180 * shade, 160 * shade);
         }
       }
 
@@ -464,7 +509,7 @@ Seni çok seviyorum balımmmmm.</div>
           const nx = x / 0.15;
           const shade = 0.65 + (1 - Math.abs(nx)) * 0.35;
           const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(shade * (CHARS.length - 1)))];
-          put(x, y, 0.45, ch, 240 * shade, 35 * shade, 70 * shade);
+          put(x, y, 0.45, ch, 245 * shade, 35 * shade, 75 * shade);
         }
       }
 
@@ -476,7 +521,7 @@ Seni çok seviyorum balımmmmm.</div>
             const by = pinchY + Math.sin(t) * 0.065 * r - Math.abs(Math.cos(t)) * 0.015;
             const shade = 0.6 + 0.4 * r;
             const ch = shade > 0.8 ? '#' : '+';
-            put(bx, by, 0.46 + r * 0.02, ch, 255 * shade, 40 * shade, 80 * shade);
+            put(bx, by, 0.46 + r * 0.02, ch, 255 * shade, 40 * shade, 85 * shade);
           }
         }
       }
@@ -508,8 +553,8 @@ Seni çok seviyorum balımmmmm.</div>
         const cy = by + (ty - by) * t;
         const cz = bz + (tz - bz) * t;
         const l = 0.45 + 0.55 * t;
-        put(cx, cy, cz, '|', 85 * l, 160 * l, 75 * l);
-        put(cx + 0.007, cy, cz, ':', 55 * l, 120 * l, 50 * l);
+        put(cx, cy, cz, '|', 85 * l, 165 * l, 75 * l);
+        put(cx + 0.007, cy, cz, ':', 55 * l, 125 * l, 50 * l);
       }
 
       for (const side of [-1, 1]) {
@@ -526,13 +571,13 @@ Seni çok seviyorum balımmmmm.</div>
             const lz = oz + u * 0.08;
             const l = 0.48 + 0.52 * (1 - Math.abs(v) * 0.45);
             const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(l * CHARS.length))];
-            put(lx, ly, lz, ch, 45 * l, 185 * l, 80 * l);
+            put(lx, ly, lz, ch, 45 * l, 195 * l, 85 * l);
           }
         }
       }
     }
 
-    // 3D Manolya (Magnolia) Çiçekleri
+    // 3D Belirgin & Romantik Manolya (Magnolia) Çiçekleri
     function manolya(f, bloom, sway, sec) {
       const fx = f.x + sway;
       const fy = f.y;
@@ -546,23 +591,24 @@ Seni çok seviyorum balımmmmm.</div>
         const ang = f.rot + (p / 8) * Math.PI * 2 + Math.sin(sec * 0.65 + p) * 0.012;
         const ca = Math.cos(ang), sa = Math.sin(ang);
 
-        for (let u = 0.04; u <= 1.0; u += 0.017) {
-          const pw = Math.sin(Math.pow(u, 0.65) * Math.PI) * (inner ? 0.35 : 0.42) * f.s;
-          const rDist = u * f.s * (inner ? 0.24 + 0.72 * bloom : 0.26 + 0.88 * bloom);
-          const zCurve = f.s * ((1 - bloom) * 0.52 * u + bloom * (0.24 * Math.sin(u * Math.PI * 0.95) + (inner ? 0.16 : 0.06) * u * u));
+        // Daha sık ve dolgun yaprak örneklemesi (u: 0.014, v: 0.09)
+        for (let u = 0.035; u <= 1.0; u += 0.014) {
+          const pw = Math.sin(Math.pow(u, 0.60) * Math.PI) * (inner ? 0.38 : 0.46) * f.s;
+          const rDist = u * f.s * (inner ? 0.24 + 0.74 * bloom : 0.26 + 0.90 * bloom);
+          const zCurve = f.s * ((1 - bloom) * 0.52 * u + bloom * (0.25 * Math.sin(u * Math.PI * 0.95) + (inner ? 0.17 : 0.07) * u * u));
           const zLayer = inner ? 0.02 : -0.02;
 
-          for (let v = -1; v <= 1; v += 0.11) {
+          for (let v = -1; v <= 1; v += 0.09) {
             const lx = rDist * ca - (v * pw) * sa;
             const ly = rDist * sa + (v * pw) * ca;
             const lz = zCurve + zLayer - Math.abs(v) * 0.045 * f.s;
 
             const [rx, ry, rz] = rotXY(lx, ly, lz, f.rx, f.ry);
 
-            const centerMix = Math.exp(-u * 4.0);
-            const tipMix = Math.pow(u, 1.8);
-            const vein = Math.exp(-Math.abs(v) * 6.5) * 0.22;
-            const shade = Math.max(0.40, Math.min(1.22, 0.60 + (rz / f.s) * 0.32 + (1 - Math.abs(v) * 0.32) * 0.24 + vein));
+            const centerMix = Math.exp(-u * 3.8);
+            const tipMix = Math.pow(u, 1.7);
+            const vein = Math.exp(-Math.abs(v) * 6.0) * 0.24;
+            const shade = Math.max(0.48, Math.min(1.28, 0.66 + (rz / f.s) * 0.35 + (1 - Math.abs(v) * 0.30) * 0.25 + vein));
 
             const chIdx = Math.min(CHARS.length - 1, Math.floor(Math.min(0.99, shade) * CHARS.length));
 
@@ -579,17 +625,17 @@ Seni çok seviyorum balımmmmm.</div>
         }
       }
 
-      // Manolyanın ortasındaki dik duran polen konisi
-      if (bloom > 0.25) {
-        for (let s = 0; s < 10; s++) {
-          const sa = f.rot + (s / 10) * Math.PI * 2 + 0.25;
-          for (let t = 0.20; t <= 0.95; t += 0.25) {
-            const sx = Math.cos(sa) * 0.09 * t * f.s * bloom;
-            const sy = Math.sin(sa) * 0.09 * t * f.s * bloom;
-            const sz = 0.22 * t * f.s * bloom + 0.035;
+      // Manolyanın ortasındaki belirgin polen konisi & altın ışıltılar
+      if (bloom > 0.22) {
+        for (let s = 0; s < 12; s++) {
+          const sa = f.rot + (s / 12) * Math.PI * 2 + 0.25;
+          for (let t = 0.18; t <= 0.98; t += 0.22) {
+            const sx = Math.cos(sa) * 0.095 * t * f.s * bloom;
+            const sy = Math.sin(sa) * 0.095 * t * f.s * bloom;
+            const sz = 0.24 * t * f.s * bloom + 0.035;
             const [rx, ry, rz] = rotXY(sx, sy, sz, f.rx, f.ry);
-            const isApex = t > 0.72;
-            put(fx + rx, fy + ry, fz + rz, isApex ? '*' : ':', isApex ? 255 : 245, isApex ? 210 : 210, isApex ? 160 : 85);
+            const isApex = t > 0.70;
+            put(fx + rx, fy + ry, fz + rz, isApex ? '*' : ':', isApex ? 255 : 245, isApex ? 220 : 210, isApex ? 165 : 85);
           }
         }
       }
@@ -624,9 +670,10 @@ Seni çok seviyorum balımmmmm.</div>
     }
 
     // =========================================================
-    // 3. UÇUŞAN MANOLYA YAPRAKLARI
+    // 3. UÇUŞAN MANOLYA YAPRAKLARI & PERİ TOZU PARILTILARI
     // =========================================================
     let petals = [];
+    let sparkles = [];
 
     function initParticles() {
       petals = [];
@@ -646,9 +693,24 @@ Seni çok seviyorum balımmmmm.</div>
       }
     }
 
+    function initSparkles() {
+      sparkles = [];
+      for (let i = 0; i < 20; i++) {
+        sparkles.push({
+          x: w * 0.5 + (Math.random() - 0.5) * (w < 640 ? w * 0.65 : 340),
+          y: h * 0.52 + (Math.random() - 0.5) * 160,
+          vy: -(0.3 + Math.random() * 0.6),
+          size: 1.8 + Math.random() * 2.8,
+          alpha: Math.random(),
+          sp: 1 + Math.random() * 2
+        });
+      }
+    }
+
     function drawFX() {
       fxCtx.clearRect(0, 0, w, h);
 
+      // Süzülen Manolya Yaprakları
       for (let i = 0; i < petals.length; i++) {
         const p = petals[i];
         p.y += p.speedY;
@@ -671,6 +733,23 @@ Seni çok seviyorum balımmmmm.</div>
         fxCtx.ellipse(0, 0, p.size * 1.4, p.size * 0.85, 0, 0, Math.PI * 2);
         fxCtx.fill();
         fxCtx.restore();
+      }
+
+      // Manolyalardan Yükselen Peri Tozu (Fairy Dust)
+      for (let i = 0; i < sparkles.length; i++) {
+        const s = sparkles[i];
+        s.y += s.vy;
+        s.alpha = 0.3 + 0.6 * (0.5 + 0.5 * Math.sin(Date.now() * 0.003 * s.sp + i));
+        if (s.y < h * 0.22) {
+          s.y = h * 0.65 + Math.random() * 60;
+          s.x = w * 0.5 + (Math.random() - 0.5) * (w < 640 ? w * 0.65 : 340);
+        }
+        fxCtx.fillStyle = `rgba(255, 220, 180, ${s.alpha * 0.85})`;
+        fxCtx.shadowColor = '#ffb3c6';
+        fxCtx.shadowBlur = 8;
+        fxCtx.beginPath();
+        fxCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+        fxCtx.fill();
       }
     }
 
@@ -714,7 +793,9 @@ Seni çok seviyorum balımmmmm.</div>
         manolya(f, bloom, sway, sec);
       }
 
-      // Z-Buffer Çizimi
+      // Z-Buffer Çizimi (Belirgin Çiçek Parıltısı)
+      ctx.shadowColor = 'rgba(255, 120, 170, 0.25)';
+      ctx.shadowBlur = 4;
       for (let y = 0; y < rows; y++) {
         const off = y * cols;
         for (let x = 0; x < cols; x++) {
@@ -725,6 +806,7 @@ Seni çok seviyorum balımmmmm.</div>
           }
         }
       }
+      ctx.shadowBlur = 0;
 
       drawFX();
       requestAnimationFrame(frame);
@@ -742,17 +824,14 @@ Seni çok seviyorum balımmmmm.</div>
       }
     }
 
-    // Sayfa açılır açılmaz çalmayı dene
     window.addEventListener('DOMContentLoaded', playAudioInstant);
     window.addEventListener('load', playAudioInstant);
-
-    // Tarayıcı güvenlik ilkesi gereği ilk tıklama/dokunuşta anında ses kilidini aç
     window.addEventListener('click', playAudioInstant, { passive: true });
     window.addEventListener('touchstart', playAudioInstant, { passive: true });
     window.addEventListener('keydown', playAudioInstant, { passive: true });
 
     // =========================================================
-    // 6. AŞK MEKTUBU MODALI
+    // 6. AŞK MEKTUBU MODALI & SES KISMA DOKUNUŞU (AUDIO DUCKING)
     // =========================================================
     const openLetterBtn = document.getElementById('openLetterBtn');
     const letterModal = document.getElementById('letterModal');
@@ -761,14 +840,19 @@ Seni çok seviyorum balımmmmm.</div>
     openLetterBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       letterModal.classList.add('open');
+      if (bgAudio) bgAudio.volume = 0.35; // Şiiri okurken fon müziği sakinleşir
     });
 
     closeLetterBtn.addEventListener('click', () => {
       letterModal.classList.remove('open');
+      if (bgAudio) bgAudio.volume = 0.85; // Mektup kapanınca ses eski canlılığına döner
     });
 
     letterModal.addEventListener('click', (e) => {
-      if (e.target === letterModal) letterModal.classList.remove('open');
+      if (e.target === letterModal) {
+        letterModal.classList.remove('open');
+        if (bgAudio) bgAudio.volume = 0.85;
+      }
     });
 
     // =========================================================
@@ -778,7 +862,6 @@ Seni çok seviyorum balımmmmm.</div>
       if (e.target.closest('.modal-backdrop') || e.target.closest('.glass-btn')) {
         return;
       }
-      // Manolyaları tekrar açtır
       t0 = null;
     });
 

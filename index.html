@@ -502,7 +502,7 @@
   <!-- SAĞ ALT: AŞK MEKTUBU BUTONU -->
   <div class="letter-btn">
     <button class="glass-btn" id="openLetterBtn">
-      <span>💌 Manolya Notu</span>
+      <span>💌 Sana Bir Mektup Var</span>
     </button>
   </div>
 
@@ -511,29 +511,24 @@
     ✦ Manolyaların yeniden açması ve etrafa kalpler saçmak için ekrana dokun ✦
   </div>
 
-  <!-- AŞK MEKTUBU MODALI (Flört - Manolya Şiiri & Notu) -->
+  <!-- AŞK MEKTUBU MODALI (Özel Şiir & Not) -->
   <div class="modal-backdrop" id="letterModal">
     <div class="love-letter-card">
-      <div class="letter-wax-seal">🌸</div>
+      <div class="letter-wax-seal">💌</div>
       <button class="letter-close" id="closeLetterBtn">&times;</button>
       <div class="letter-title" id="letterTitle" contenteditable="true" spellcheck="false">
-        Manolya... ♡
+        Sana Bir Mektup Var... ♡
       </div>
       <div class="letter-body" id="letterBody" contenteditable="true" spellcheck="false">
-Dün yaşadıkların çok uzakta,
-Dün seni bugüne getirdi manolya...
-Bugün seni çağıran ses çok yakında;
-Haydi gel, haydi duy, haydi dön kalbine...
+Gözlerini gözlüyorum gözlerimde,
+Gözlerin gözlerimin en derin gözünde...
+Gözümün gözünü görmüyorsun lakin,
+Gözlerim her zaman senin gözünde...
 
-Manolya... Sıcak bir tebessüm,
-Manolya... Affet kendini,
-Manolya... Hayat yaşamaya değer,
-Güneş yeniden doğar ve masum oluruz...
-
-Sen benim hayatıma açan en güzel manolyamsın balım... İyi ki varsın ♡
+Seni çok seviyorum balım ♡
       </div>
       <div class="letter-actions">
-        <span class="letter-date" id="letterDate">Flört - Manolya ♪</span>
+        <span class="letter-date" id="letterDate">Sonsuza dek... ♡</span>
         <button class="letter-save-btn" id="saveLetterBtn">Notu Kaydet ♡</button>
       </div>
     </div>
@@ -1068,14 +1063,14 @@ Sen benim hayatıma açan en güzel manolyamsın balım... İyi ki varsın ♡
       ytPlayer = new YT.Player('ytPlayer', {
         height: '1',
         width: '1',
-        videoId: 'L6dU9a7lOHo', // Flört - Manolya
+        videoId: 'uvbg0l9SpUA', // Flört - Manolya (Resmi Manolya Parçası)
         playerVars: {
           autoplay: 0,
           controls: 0,
           disablekb: 1,
           enablejsapi: 1,
           loop: 1,
-          playlist: 'L6dU9a7lOHo',
+          playlist: 'uvbg0l9SpUA',
           origin: window.location.origin
         },
         events: {
@@ -1249,8 +1244,8 @@ Sen benim hayatıma açan en güzel manolyamsın balım... İyi ki varsın ♡
     const letterTitle = document.getElementById('letterTitle');
     const letterBody = document.getElementById('letterBody');
 
-    const savedLetterTitle = localStorage.getItem('boquette_letter_title');
-    const savedLetterBody = localStorage.getItem('boquette_letter_body');
+    const savedLetterTitle = localStorage.getItem('boquette_letter_title_v2');
+    const savedLetterBody = localStorage.getItem('boquette_letter_body_v2');
     if (savedLetterTitle) letterTitle.innerText = savedLetterTitle;
     if (savedLetterBody) letterBody.innerText = savedLetterBody;
 
@@ -1268,8 +1263,8 @@ Sen benim hayatıma açan en güzel manolyamsın balım... İyi ki varsın ♡
     });
 
     saveLetterBtn.addEventListener('click', () => {
-      localStorage.setItem('boquette_letter_title', letterTitle.innerText.trim());
-      localStorage.setItem('boquette_letter_body', letterBody.innerText.trim());
+      localStorage.setItem('boquette_letter_title_v2', letterTitle.innerText.trim());
+      localStorage.setItem('boquette_letter_body_v2', letterBody.innerText.trim());
       saveLetterBtn.innerText = 'Kaydedildi ♡';
       setTimeout(() => {
         saveLetterBtn.innerText = 'Notu Kaydet ♡';

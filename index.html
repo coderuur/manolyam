@@ -148,30 +148,6 @@
       transform: scale(1) translateY(0);
     }
 
-    /* Nostaljik Romantik Aşk Pulu (Fotoğrafınız) */
-    .letter-stamp {
-      position: absolute;
-      top: 14px;
-      left: 18px;
-      width: 44px;
-      height: 52px;
-      background: #fff;
-      padding: 3px;
-      border: 1px dashed #d4a5b5;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      transform: rotate(-4deg);
-      border-radius: 2px;
-      pointer-events: none;
-    }
-
-    .letter-stamp img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: contrast(1.05);
-    }
-
     .letter-wax-seal {
       position: absolute;
       top: -18px;
@@ -280,12 +256,6 @@
         padding: 14px 10px;
         line-height: 1.5;
       }
-      .letter-stamp {
-        width: 38px;
-        height: 46px;
-        top: 12px;
-        left: 14px;
-      }
       .bottom-hint {
         bottom: 16px;
         font-size: 14px;
@@ -317,12 +287,9 @@
     Manolyaların yeniden açması için ekrana dokun
   </div>
 
-  <!-- AŞK MEKTUBU MODALI (Özel Şiir & Nostaljik Pul) -->
+  <!-- AŞK MEKTUBU MODALI (Özel Şiir) -->
   <div class="modal-backdrop" id="letterModal">
     <div class="love-letter-card">
-      <div class="letter-stamp" title="balımmmmm">
-        <img src="./foto.jpg" alt="biz">
-      </div>
       <div class="letter-wax-seal">✉</div>
       <button class="letter-close" id="closeLetterBtn">&times;</button>
       <div class="letter-title">Sana Bir Mektup Var</div>

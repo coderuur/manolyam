@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>lily_bouquet ♡</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💐</text></svg>">
+  <title>manolya ♡</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
   
   <!-- Google Fonts: Romantik & Zarif Tipografi -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
       z-index: 1;
     }
 
-    /* Kalp & Yaprak Parçacık Katmanı */
+    /* Kalp & Manolya Yaprağı Parçacık Katmanı */
     #fx-canvas {
       position: absolute;
       top: 0;
@@ -70,7 +70,7 @@
       top: 22px;
       left: 22px;
       z-index: 20;
-      width: 145px;
+      width: 150px;
       padding: 10px 10px 14px 10px;
       background: #fbf9f5;
       background-image: linear-gradient(135deg, #fff 0%, #f7f3ec 100%);
@@ -108,9 +108,9 @@
     }
 
     .polaroid-img-wrapper {
-      width: 125px;
-      height: 125px;
-      background: #1a1622;
+      width: 130px;
+      height: 130px;
+      background: #110e17;
       border-radius: 2px;
       overflow: hidden;
       position: relative;
@@ -132,38 +132,11 @@
       transform: scale(1.05);
     }
 
-    /* Varsayılan romantik illüstrasyon / yükleme butonu */
-    .polaroid-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      color: #ffb8d2;
-      text-align: center;
-      padding: 10px;
-    }
-
-    .polaroid-placeholder svg {
-      width: 34px;
-      height: 34px;
-      fill: #ff6584;
-      filter: drop-shadow(0 0 6px rgba(255, 105, 180, 0.5));
-      animation: heartPulse 1.8s infinite ease-in-out;
-    }
-
-    .polaroid-placeholder span {
-      font-size: 11px;
-      font-family: 'Caveat', cursive;
-      color: #dfbfcc;
-      line-height: 1.2;
-    }
-
     /* Polaroid altındaki romantik el yazısı not */
     .polaroid-caption {
       margin-top: 9px;
       font-family: 'Caveat', cursive;
-      font-size: 17px;
+      font-size: 18px;
       color: #3b2832;
       text-align: center;
       width: 100%;
@@ -194,7 +167,7 @@
     }
 
     /* ===================================================
-       2. SAĞ ÜST KONTROL BUTONLARI (Müzik & Özelleştir)
+       2. SAĞ ÜST KONTROL BUTONLARI (Flört - Manolya)
        =================================================== */
     .top-controls {
       position: absolute;
@@ -206,41 +179,42 @@
     }
 
     .glass-btn {
-      background: rgba(35, 15, 28, 0.45);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 160, 200, 0.25);
+      background: rgba(35, 15, 28, 0.55);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 160, 200, 0.3);
       border-radius: 30px;
-      padding: 8px 16px;
+      padding: 9px 18px;
       color: #ffe5ef;
       font-family: 'Caveat', cursive;
-      font-size: 16px;
+      font-size: 17px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       cursor: pointer;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4), 0 0 12px rgba(255, 105, 180, 0.15);
       transition: all 0.3s ease;
     }
 
     .glass-btn:hover {
-      background: rgba(80, 25, 55, 0.65);
-      border-color: rgba(255, 180, 220, 0.5);
+      background: rgba(85, 25, 60, 0.75);
+      border-color: rgba(255, 180, 220, 0.6);
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 105, 180, 0.35);
       color: #fff;
     }
 
-    .glass-btn.active {
-      background: rgba(220, 40, 100, 0.35);
+    .glass-btn.playing {
+      background: rgba(220, 40, 100, 0.45);
       border-color: #ff6599;
+      box-shadow: 0 0 22px rgba(255, 105, 180, 0.5);
     }
 
     /* Müzik ses dalgası animasyonu */
     .sound-wave {
       display: inline-flex;
       align-items: center;
-      gap: 2px;
+      gap: 2.5px;
       height: 14px;
     }
 
@@ -248,7 +222,7 @@
       width: 2.5px;
       background: #ff85b3;
       border-radius: 2px;
-      height: 6px;
+      height: 5px;
       transition: height 0.2s;
     }
 
@@ -259,11 +233,6 @@
     @keyframes wave {
       0%, 100% { height: 4px; }
       50% { height: 14px; }
-    }
-
-    @keyframes heartPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.18); }
     }
 
     /* ===================================================
@@ -299,7 +268,7 @@
     /* Aşk Mektubu Penceresi */
     .love-letter-card {
       width: 100%;
-      max-width: 440px;
+      max-width: 460px;
       background: #fffdf9;
       background-image: 
         radial-gradient(#e8d8d0 1px, transparent 1px),
@@ -370,11 +339,11 @@
       line-height: 1.55;
       color: #402c34;
       width: 100%;
-      min-height: 140px;
-      max-height: 260px;
+      min-height: 150px;
+      max-height: 270px;
       overflow-y: auto;
       border: 1px dashed rgba(200, 150, 170, 0.35);
-      padding: 12px;
+      padding: 14px;
       border-radius: 6px;
       background: rgba(255, 255, 255, 0.5);
       outline: none;
@@ -412,9 +381,7 @@
       color: #8f7982;
     }
 
-    /* ===================================================
-       4. YAZI ÖZELLEŞTİRME MODALI
-       =================================================== */
+    /* Arka Plan Metni Düzenleme */
     .custom-input {
       width: 100%;
       padding: 10px 14px;
@@ -439,7 +406,7 @@
       bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
-      color: rgba(255, 190, 220, 0.4);
+      color: rgba(255, 190, 220, 0.45);
       font-family: 'Caveat', cursive;
       font-size: 17px;
       letter-spacing: 1px;
@@ -452,8 +419,8 @@
     }
 
     @keyframes fadeInOut {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.85; }
+      0%, 100% { opacity: 0.35; }
+      50% { opacity: 0.9; }
     }
 
     /* MOBİL UYUMLULUK */
@@ -461,13 +428,13 @@
       .polaroid-card {
         top: 14px;
         left: 14px;
-        width: 110px;
+        width: 115px;
         padding: 8px 8px 10px 8px;
         transform: rotate(-2deg);
       }
       .polaroid-img-wrapper {
-        width: 94px;
-        height: 94px;
+        width: 99px;
+        height: 99px;
       }
       .polaroid-caption {
         font-size: 14px;
@@ -495,27 +462,20 @@
 </head>
 
 <body>
-  <!-- 3D Buket Canvas -->
+  <!-- 3D Manolya Buketi Canvas -->
   <canvas id="c"></canvas>
 
-  <!-- Uçuşan Kalp & Gül Yaprakları Katmanı -->
+  <!-- Uçuşan Manolya Yaprakları & Kalp Katmanı -->
   <canvas id="fx-canvas"></canvas>
 
   <!-- Romantik Işık & Ambiyans -->
   <div class="ambient-glow"></div>
 
   <!-- SOL ÜST: POLAROID FOTOĞRAF KARTI -->
-  <div class="polaroid-card" id="polaroidCard" title="Fotoğrafı değiştirmek için tıkla ♡">
+  <div class="polaroid-card" id="polaroidCard" title="Fotoğrafı değiştirmek veya incelemek için tıkla ♡">
     <div class="polaroid-pin"></div>
     <div class="polaroid-img-wrapper" id="polaroidImgWrap">
-      <!-- Görsel varsa img gelir, yoksa placeholder -->
-      <img id="polaroidImg" src="" alt="Bizim Fotoğrafımız" style="display: none;">
-      <div class="polaroid-placeholder" id="polaroidPlaceholder">
-        <svg viewBox="0 0 24 24">
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-        </svg>
-        <span>Fotoğraf Ekle ♡</span>
-      </div>
+      <img id="polaroidImg" src="./foto.jpg" alt="balım ♡">
     </div>
     <div class="polaroid-caption" id="polaroidCaption" contenteditable="true" spellcheck="false" title="Yazıyı değiştirebilirsin">
       balım ♡
@@ -526,46 +486,54 @@
   <!-- Gizli Fotoğraf Yükleyici -->
   <input type="file" id="photoInput" accept="image/*" style="display: none;">
 
-  <!-- SAĞ ÜST: KONTROLLER (Müzik & Metin Ayarla) -->
+  <!-- SAĞ ÜST: KONTROLLER (Flört - Manolya Müziği & Metin Ayarla) -->
   <div class="top-controls">
-    <button class="glass-btn" id="musicBtn" title="Romantik piyano melodisi">
+    <button class="glass-btn" id="musicBtn" title="Flört - Manolya çal">
       <div class="sound-wave">
         <span></span><span></span><span></span>
       </div>
-      <span id="musicBtnText">Müzik Çal ♫</span>
+      <span id="musicBtnText">Flört - Manolya ♫</span>
     </button>
     <button class="glass-btn" id="customTextBtn" title="Arka plandaki yazıyı değiştir">
-      <span>✨ Yazıyı Değiştir</span>
+      <span>✨ Yazı</span>
     </button>
   </div>
 
   <!-- SAĞ ALT: AŞK MEKTUBU BUTONU -->
   <div class="letter-btn">
     <button class="glass-btn" id="openLetterBtn">
-      <span>💌 Sana Bir Notum Var</span>
+      <span>💌 Manolya Notu</span>
     </button>
   </div>
 
   <!-- ALT ORTA İPUCU -->
   <div class="bottom-hint">
-    ✦ Çiçeklerin yeniden açması ve etrafa kalpler saçmak için ekrana dokun ✦
+    ✦ Manolyaların yeniden açması ve etrafa kalpler saçmak için ekrana dokun ✦
   </div>
 
-  <!-- AŞK MEKTUBU MODALI -->
+  <!-- AŞK MEKTUBU MODALI (Flört - Manolya Şiiri & Notu) -->
   <div class="modal-backdrop" id="letterModal">
     <div class="love-letter-card">
-      <div class="letter-wax-seal">❤</div>
+      <div class="letter-wax-seal">🌸</div>
       <button class="letter-close" id="closeLetterBtn">&times;</button>
       <div class="letter-title" id="letterTitle" contenteditable="true" spellcheck="false">
-        Benim Güzel Balıma...
+        Manolya... ♡
       </div>
       <div class="letter-body" id="letterBody" contenteditable="true" spellcheck="false">
-Sen benim hayatıma açan en güzel çiçeksin. Varlığınla dünyamı güzelleştirdiğin, her anıma huzur ve neşe kattığın için teşekkür ederim. 
+Dün yaşadıkların çok uzakta,
+Dün seni bugüne getirdi manolya...
+Bugün seni çağıran ses çok yakında;
+Haydi gel, haydi duy, haydi dön kalbine...
 
-Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
+Manolya... Sıcak bir tebessüm,
+Manolya... Affet kendini,
+Manolya... Hayat yaşamaya değer,
+Güneş yeniden doğar ve masum oluruz...
+
+Sen benim hayatıma açan en güzel manolyamsın balım... İyi ki varsın ♡
       </div>
       <div class="letter-actions">
-        <span class="letter-date" id="letterDate">Sonsuza dek...</span>
+        <span class="letter-date" id="letterDate">Flört - Manolya ♪</span>
         <button class="letter-save-btn" id="saveLetterBtn">Notu Kaydet ♡</button>
       </div>
     </div>
@@ -579,16 +547,24 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       <p style="font-family: 'Caveat', cursive; font-size: 16px; color: #705461; margin-bottom: 14px; text-align: center;">
         Arka planda romantik bir şekilde tekrarlayan yazıyı dilediğin gibi belirle:
       </p>
-      <input type="text" id="bgTextInput" class="custom-input" placeholder="Örn: BALIM, SENİ SEVİYORUM..." value="BALIMMMMM">
+      <input type="text" id="bgTextInput" class="custom-input" placeholder="Örn: BALIM, SENİ SEVİYORUM..." value="balım">
       <div style="display: flex; justify-content: flex-end; gap: 10px;">
         <button class="letter-save-btn" id="saveTextBtn">Kaydet ✨</button>
       </div>
     </div>
   </div>
 
+  <!-- GİZLİ YOUTUBE AUDIO CONTAINER (Flört - Manolya: L6dU9a7lOHo) -->
+  <div id="ytAudioContainer" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0.01; pointer-events: none;">
+    <div id="ytPlayer"></div>
+  </div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+
   <script>
     // =========================================================
-    // 1. 3D ASCII BUKET ALGORİTMASI & ÇİÇEK PARÇACIKLARI
+    // 1. 3D ASCII MANOLYA (MAGNOLIA) BUKETİ MOTORU
     // =========================================================
     const canvas = document.getElementById('c');
     const ctx = canvas.getContext('2d');
@@ -605,31 +581,31 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     let stars = [];
     let t0 = null;
 
-    // Arka plan metni
-    let bgCustomText = localStorage.getItem('boquette_bg_text') || 'BALIMMMMM';
+    // Arka plan metni: "balım"
+    let bgCustomText = localStorage.getItem('boquette_bg_text') || 'balım';
 
     // =========================================================
-    // DAHA ROMANTİK ÇİÇEK PALETİ (Gül Kurusu, Bordo, Şeftali, Krem)
+    // MANOLYA ÇİÇEK BUKETİ (Soulangeana, Grandiflora, Nigra)
     // =========================================================
     const bouquet = [
-      // 1. Merkez: Kadife Aşk Kırmızısı Gül
-      { x:  0.00, y:  0.34, z:  0.22, rx: -0.15, ry:  0.00, rot: 0.10, s: 0.35, c: [255,  25,  55], mid: [165,  10,  28], tip: [255, 115, 135], d: 0.00 },
-      // 2. Sol Orta: Şakayık Pembesi / Canlı Gül
-      { x: -0.28, y:  0.06, z:  0.34, rx: -0.05, ry: -0.22, rot: 0.35, s: 0.34, c: [255,  55, 150], mid: [180,  25, 105], tip: [255, 175, 225], d: 0.25 },
-      // 3. Sağ Orta: Saf Gelin Beyazı & İpeksi Krem Zambak
-      { x:  0.29, y:  0.02, z:  0.32, rx: -0.05, ry:  0.22, rot: 0.20, s: 0.35, c: [255, 245, 240], mid: [210, 190, 180], tip: [255, 255, 255], d: 0.40 },
-      // 4. Ön Alt: Sıcak Şeftali & Günbatımı Gül
-      { x:  0.00, y: -0.20, z:  0.44, rx:  0.12, ry:  0.02, rot: 0.45, s: 0.32, c: [255, 135,  95], mid: [195,  70,  40], tip: [255, 220, 185], d: 0.55 },
-      // 5. Sol Alt: Pudra Pembesi & Narin Orkide (Eski sarı yerine soft pudra)
-      { x: -0.45, y: -0.15, z:  0.15, rx:  0.05, ry: -0.35, rot: 0.15, s: 0.27, c: [248, 120, 170], mid: [180,  60, 120], tip: [255, 210, 235], d: 0.70 },
-      // 6. Sağ Üst: Şarap Bordo & Vişne Çürüğü
-      { x:  0.46, y:  0.18, z:  0.14, rx: -0.10, ry:  0.35, rot: 0.50, s: 0.27, c: [230,  30,  85], mid: [145,  15,  45], tip: [255, 130, 175], d: 0.65 },
-      // 7. Sol Üst: Romantik Pamuk Şekeri Pembesi
-      { x: -0.24, y:  0.44, z: -0.04, rx: -0.22, ry: -0.18, rot: 0.25, s: 0.25, c: [255, 190, 215], mid: [190, 110, 135], tip: [255, 245, 250], d: 0.85 },
-      // 8. Sağ Tepe: Şampanya & Bal Rengi Gül
-      { x:  0.26, y:  0.42, z: -0.05, rx: -0.22, ry:  0.20, rot: 0.40, s: 0.25, c: [255, 175,  85], mid: [190, 100,  35], tip: [255, 235, 165], d: 0.90 },
-      // 9. Sağ Alt: Aşk Ateşi Yakut Kırmızısı
-      { x:  0.41, y: -0.26, z:  0.18, rx:  0.15, ry:  0.32, rot: 0.05, s: 0.25, c: [240,  30,  50], mid: [155,  15,  25], tip: [255, 125, 105], d: 1.00 }
+      // 1. Merkez: Klasik Pembe-Porselen Manolya (Magnolia Soulangeana)
+      { x:  0.00, y:  0.34, z:  0.22, rx: -0.15, ry:  0.00, rot: 0.10, s: 0.36, c: [230,  55, 115], mid: [255, 225, 235], tip: [255, 255, 255], d: 0.00 },
+      // 2. Sol Orta: Şarap & Mor Manolya (Magnolia Nigra)
+      { x: -0.28, y:  0.06, z:  0.34, rx: -0.05, ry: -0.22, rot: 0.35, s: 0.35, c: [215,  35,  90], mid: [250, 160, 195], tip: [255, 240, 248], d: 0.25 },
+      // 3. Sağ Orta: Saf Porselen Beyazı Yıldız Manolyası (Magnolia Stellata)
+      { x:  0.29, y:  0.02, z:  0.32, rx: -0.05, ry:  0.22, rot: 0.20, s: 0.36, c: [240, 218, 228], mid: [255, 248, 250], tip: [255, 255, 255], d: 0.40 },
+      // 4. Ön Alt: Narin Şeftali & Krem Manolya
+      { x:  0.00, y: -0.20, z:  0.44, rx:  0.12, ry:  0.02, rot: 0.45, s: 0.33, c: [245, 105, 115], mid: [255, 215, 210], tip: [255, 250, 245], d: 0.55 },
+      // 5. Sol Alt: Masum Pudra Pembesi Manolya
+      { x: -0.45, y: -0.15, z:  0.15, rx:  0.05, ry: -0.35, rot: 0.15, s: 0.28, c: [235,  90, 145], mid: [255, 205, 225], tip: [255, 250, 252], d: 0.70 },
+      // 6. Sağ Üst: Koyu Kadife Gül Manolyası
+      { x:  0.46, y:  0.18, z:  0.14, rx: -0.10, ry:  0.35, rot: 0.50, s: 0.28, c: [210,  30,  75], mid: [245, 135, 170], tip: [255, 230, 242], d: 0.65 },
+      // 7. Sol Üst: Açık Pembe İpek Manolya
+      { x: -0.24, y:  0.44, z: -0.04, rx: -0.22, ry: -0.18, rot: 0.25, s: 0.26, c: [240, 125, 170], mid: [255, 215, 235], tip: [255, 255, 255], d: 0.85 },
+      // 8. Sağ Tepe: Şampanya Porselen Manolya
+      { x:  0.26, y:  0.42, z: -0.05, rx: -0.22, ry:  0.20, rot: 0.40, s: 0.26, c: [245, 135, 115], mid: [255, 230, 215], tip: [255, 255, 250], d: 0.90 },
+      // 9. Sağ Alt: Derin Aşk Manolyası
+      { x:  0.41, y: -0.26, z:  0.18, rx:  0.15, ry:  0.32, rot: 0.05, s: 0.26, c: [225,  40,  70], mid: [250, 160, 180], tip: [255, 240, 245], d: 1.00 }
     ];
 
     function setup() {
@@ -656,7 +632,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
           y: Math.random() * h,
           p: Math.random() * 6.28,
           sp: 0.6 + Math.random() * 1.4,
-          isPink: Math.random() > 0.6
+          isPink: Math.random() > 0.55
         });
       }
 
@@ -720,7 +696,6 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
           const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(shade * (CHARS.length - 2)))];
 
           const wx = x + sway * (y > pinchY ? (y - pinchY) * 0.45 : 0);
-          // Sıcak pembe-şeftali tonlu ambalaj
           put(wx, y, -0.35 + fold * 0.05, ch, 205 * shade, 145 * shade, 130 * shade);
         }
       }
@@ -750,7 +725,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         }
       }
 
-      // Bağlanan Kurdele Kemeri (Zarif Kırmızı Kadife & Altın ışıltı)
+      // Kurdele Kemeri
       for (let y = pinchY - 0.032; y <= pinchY + 0.032; y += 0.01) {
         for (let x = -0.15; x <= 0.15; x += 0.01) {
           const nx = x / 0.15;
@@ -786,6 +761,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       }
     }
 
+    // Manolya Dalı & Yaprakları
     function stem(f, sway) {
       const bx = f.x * 0.12;
       const by = -0.88;
@@ -800,8 +776,9 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         const cy = by + (ty - by) * t;
         const cz = bz + (tz - bz) * t;
         const l = 0.45 + 0.55 * t;
-        put(cx, cy, cz, '|', 40 * l, 195 * l, 75 * l);
-        put(cx + 0.007, cy, cz, ':', 25 * l, 145 * l, 50 * l);
+        // Koyu ahşapsı manolya dalı
+        put(cx, cy, cz, '|', 85 * l, 160 * l, 75 * l);
+        put(cx + 0.007, cy, cz, ':', 55 * l, 120 * l, 50 * l);
       }
 
       for (const side of [-1, 1]) {
@@ -811,20 +788,25 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         const oz = bz + (tz - bz) * st;
 
         for (let u = 0; u <= 1; u += 0.022) {
-          const lw = Math.sin(u * Math.PI) * 0.048;
+          // Dolgun parlak manolya yaprağı
+          const lw = Math.sin(u * Math.PI) * 0.055;
           for (let v = -1; v <= 1; v += 0.22) {
             const lx = ox + side * (u * 0.26) + v * lw * 0.25;
             const ly = oy + Math.sin(u * Math.PI * 0.78) * 0.20 + v * lw;
             const lz = oz + u * 0.08;
             const l = 0.48 + 0.52 * (1 - Math.abs(v) * 0.45);
             const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(l * CHARS.length))];
-            put(lx, ly, lz, ch, 45 * l, 210 * l, 80 * l);
+            put(lx, ly, lz, ch, 45 * l, 185 * l, 80 * l);
           }
         }
       }
     }
 
-    function lily(f, bloom, sway, sec) {
+    // =========================================================
+    // 3D MANOLYA (MAGNOLIA) ÇİÇEK MATEMATİĞİ
+    // Geniş, etli, kadeh şeklinde 8 porselen yaprak ve merkezi koni
+    // =========================================================
+    function manolya(f, bloom, sway, sec) {
       const fx = f.x + sway;
       const fy = f.y;
       const fz = f.z;
@@ -832,28 +814,31 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       const [rm, gm, bm] = f.mid;
       const [r2, g2, b2] = f.tip;
 
-      for (let p = 0; p < 6; p++) {
-        const outer = (p & 1) === 0;
-        const ang = f.rot + (p / 6) * Math.PI * 2 + Math.sin(sec * 0.65 + p) * 0.012;
+      // 8 adet geniş, kadeh şeklinde etli manolya yaprağı (4 iç, 4 dış)
+      for (let p = 0; p < 8; p++) {
+        const inner = (p & 1) === 1;
+        const ang = f.rot + (p / 8) * Math.PI * 2 + Math.sin(sec * 0.65 + p) * 0.012;
         const ca = Math.cos(ang), sa = Math.sin(ang);
 
-        for (let u = 0.03; u <= 1.0; u += 0.016) {
-          const pw = Math.sin(Math.pow(u, 0.85) * Math.PI) * (outer ? 0.29 : 0.26) * f.s;
-          const rDist = u * f.s * (0.22 + 0.82 * bloom);
-          const zCurve = f.s * ((1 - bloom) * 0.42 * u + bloom * (0.16 * Math.sin(u * Math.PI) - 0.08 * u * u));
-          const zLayer = outer ? -0.015 : 0.015;
+        for (let u = 0.04; u <= 1.0; u += 0.017) {
+          // Manolya yaprağı tepeye doğru geniştir ve dolgundur (pow 0.65)
+          const pw = Math.sin(Math.pow(u, 0.65) * Math.PI) * (inner ? 0.35 : 0.42) * f.s;
+          const rDist = u * f.s * (inner ? 0.24 + 0.72 * bloom : 0.26 + 0.88 * bloom);
+          // Manolya kadehi yukarı ve dışa doğru zarifçe çanaklaşır
+          const zCurve = f.s * ((1 - bloom) * 0.52 * u + bloom * (0.24 * Math.sin(u * Math.PI * 0.95) + (inner ? 0.16 : 0.06) * u * u));
+          const zLayer = inner ? 0.02 : -0.02;
 
-          for (let v = -1; v <= 1; v += 0.1) {
+          for (let v = -1; v <= 1; v += 0.11) {
             const lx = rDist * ca - (v * pw) * sa;
             const ly = rDist * sa + (v * pw) * ca;
-            const lz = zCurve + zLayer - Math.abs(v) * 0.035 * f.s;
+            const lz = zCurve + zLayer - Math.abs(v) * 0.045 * f.s;
 
             const [rx, ry, rz] = rotXY(lx, ly, lz, f.rx, f.ry);
 
-            const centerMix = Math.exp(-u * 4.5);
-            const tipMix = Math.pow(u, 2.2);
-            const vein = Math.exp(-Math.abs(v) * 7.5) * 0.26;
-            const shade = Math.max(0.42, Math.min(1.2, 0.58 + (rz / f.s) * 0.35 + (1 - Math.abs(v) * 0.35) * 0.25 + vein));
+            const centerMix = Math.exp(-u * 4.0); // Tabandaki pembe/gül tonu
+            const tipMix = Math.pow(u, 1.8);       // Uçlardaki saf porselen beyazı
+            const vein = Math.exp(-Math.abs(v) * 6.5) * 0.22;
+            const shade = Math.max(0.40, Math.min(1.22, 0.60 + (rz / f.s) * 0.32 + (1 - Math.abs(v) * 0.32) * 0.24 + vein));
 
             const chIdx = Math.min(CHARS.length - 1, Math.floor(Math.min(0.99, shade) * CHARS.length));
 
@@ -870,40 +855,39 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         }
       }
 
-      // Çiçeğin Ortasındaki Altın Polenler
-      if (bloom > 0.3) {
-        for (let s = 0; s < 6; s++) {
-          const sa = f.rot + (s / 6) * Math.PI * 2 + 0.3;
-          for (let t = 0.25; t <= 1.0; t += 0.35) {
-            const sx = Math.cos(sa) * 0.11 * t * f.s * bloom;
-            const sy = Math.sin(sa) * 0.11 * t * f.s * bloom;
-            const sz = 0.16 * t * f.s * bloom + 0.03;
+      // Manolyanın ortasındaki belirgin dik kadeh konisi ve altın polenler
+      if (bloom > 0.25) {
+        for (let s = 0; s < 10; s++) {
+          const sa = f.rot + (s / 10) * Math.PI * 2 + 0.25;
+          for (let t = 0.20; t <= 0.95; t += 0.25) {
+            const sx = Math.cos(sa) * 0.09 * t * f.s * bloom;
+            const sy = Math.sin(sa) * 0.09 * t * f.s * bloom;
+            const sz = 0.22 * t * f.s * bloom + 0.035;
             const [rx, ry, rz] = rotXY(sx, sy, sz, f.rx, f.ry);
-            const tip = t > 0.85;
-            put(fx + rx, fy + ry, fz + rz, tip ? '♥' : '*', tip ? 255 : 240, tip ? 230 : 220, tip ? 120 : 160);
+            const isApex = t > 0.72;
+            put(fx + rx, fy + ry, fz + rz, isApex ? '♥' : ':', isApex ? 255 : 245, isApex ? 180 : 210, isApex ? 140 : 85);
           }
         }
       }
     }
 
     // =========================================================
-    // 2. ROMANTİK ARKA PLAN METNİ ÇİZİMİ (Zarif Kaligrafi)
+    // 2. ROMANTİK ARKA PLAN METNİ ("balım")
     // =========================================================
     function drawBackgroundText() {
       ctx.save();
       
-      // Zarif, romantik akıcı kaligrafi fontu
-      const fontSize = Math.floor(Math.max(32, Math.min(w * 0.075, h * 0.095)));
+      const fontSize = Math.floor(Math.max(34, Math.min(w * 0.08, h * 0.10)));
       ctx.font = `600 ${fontSize}px "Dancing Script", "Playfair Display", cursive`;
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       
       // Yumuşak romantik neon pembe ışıltı
       ctx.shadowColor = 'rgba(255, 110, 160, 0.45)';
-      ctx.shadowBlur = 12;
+      ctx.shadowBlur = 14;
       ctx.fillStyle = 'rgba(255, 195, 220, 0.13)';
 
-      const text = (bgCustomText.trim() || 'BALIM') + '   ';
+      const text = (bgCustomText.trim() || 'balım') + '   ';
       const stepX = ctx.measureText(text).width;
       const stepY = fontSize * 1.35;
 
@@ -917,25 +901,26 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     }
 
     // =========================================================
-    // 3. UÇUŞAN GÜL YAPRAKLARI, PARILTI & KALPLER (FX)
+    // 3. UÇUŞAN MANOLYA YAPRAKLARI & KALPLER (FX)
     // =========================================================
     let petals = [];
     let clickHearts = [];
 
     function initParticles() {
       petals = [];
-      const count = Math.min(32, Math.floor(w / 40));
+      const count = Math.min(30, Math.floor(w / 45));
       for (let i = 0; i < count; i++) {
         petals.push({
           x: Math.random() * w,
           y: Math.random() * h,
-          size: 6 + Math.random() * 8,
-          speedY: 0.6 + Math.random() * 1.2,
-          speedX: (Math.random() - 0.5) * 0.8,
+          size: 7 + Math.random() * 9,
+          speedY: 0.6 + Math.random() * 1.1,
+          speedX: (Math.random() - 0.5) * 0.7,
           angle: Math.random() * Math.PI * 2,
-          angularSpeed: (Math.random() - 0.5) * 0.04,
-          opacity: 0.25 + Math.random() * 0.55,
-          color: Math.random() > 0.4 ? 'rgba(255, 130, 170,' : 'rgba(255, 80, 120,'
+          angularSpeed: (Math.random() - 0.5) * 0.035,
+          opacity: 0.25 + Math.random() * 0.50,
+          // Manolya yaprak tonları: Porselen beyazı ve pudra pembe
+          color: Math.random() > 0.5 ? 'rgba(255, 235, 245,' : 'rgba(255, 160, 195,'
         });
       }
     }
@@ -960,7 +945,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     function drawFX() {
       fxCtx.clearRect(0, 0, w, h);
 
-      // Gül yaprakları süzülüşü
+      // Manolya yaprakları süzülüşü
       for (let i = 0; i < petals.length; i++) {
         const p = petals[i];
         p.y += p.speedY;
@@ -976,12 +961,12 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         fxCtx.translate(p.x, p.y);
         fxCtx.rotate(p.angle);
         fxCtx.fillStyle = `${p.color}${p.opacity})`;
-        fxCtx.shadowColor = 'rgba(255, 105, 180, 0.4)';
+        fxCtx.shadowColor = 'rgba(255, 140, 180, 0.4)';
         fxCtx.shadowBlur = 6;
 
-        // Minik yaprak şekli
+        // Geniş kadeh manolya yaprağı
         fxCtx.beginPath();
-        fxCtx.ellipse(0, 0, p.size * 1.3, p.size * 0.7, 0, 0, Math.PI * 2);
+        fxCtx.ellipse(0, 0, p.size * 1.4, p.size * 0.85, 0, 0, Math.PI * 2);
         fxCtx.fill();
         fxCtx.restore();
       }
@@ -991,7 +976,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         const h = clickHearts[i];
         h.x += h.vx;
         h.y += h.vy;
-        h.vy += 0.08; // hafif yerçekimi
+        h.vy += 0.08;
         h.alpha -= 0.018;
 
         if (h.alpha <= 0) {
@@ -1014,7 +999,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     }
 
     // =========================================================
-    // 4. ANA ANİMASYON DÖNGÜSÜ (FRAME)
+    // 4. ANA ANİMASYON DÖNGÜSÜ
     // =========================================================
     function frame(now) {
       if (t0 === null) t0 = now;
@@ -1026,7 +1011,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       ctx.fillStyle = '#040206';
       ctx.fillRect(0, 0, w, h);
 
-      // Arka plan yıldızları & parıltılar
+      // Yıldızlar & Parıltılar
       ctx.font = `bold ${CH}px "Courier New", monospace`;
       ctx.textBaseline = 'top';
       for (let i = 0; i < stars.length; i++) {
@@ -1036,10 +1021,10 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         ctx.fillText(d.isPink ? '*' : '.', d.x, d.y);
       }
 
-      // Arka Plan Romantik Metni
+      // Arka Plan Romantik Metni: "balım"
       drawBackgroundText();
 
-      // Buket ve Çiçekler
+      // Buket ve Manolyalar
       const globalSway = Math.sin(sec * 0.8) * 0.015;
       drawWrapper(globalSway);
 
@@ -1050,7 +1035,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         const bloom = 0.1 + 0.9 * (1 - Math.pow(1 - p, 3));
 
         stem(f, sway);
-        lily(f, bloom, sway, sec);
+        manolya(f, bloom, sway, sec);
       }
 
       // Z-Buffer Çizimi
@@ -1065,74 +1050,110 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
         }
       }
 
-      // FX Parçacıkları (Gül yaprakları + kalpler)
+      // FX Parçacıkları (Manolya yaprakları + kalpler)
       drawFX();
 
       requestAnimationFrame(frame);
     }
 
     // =========================================================
-    // 5. ROMANTİK WEB AUDIO PIYANO / MÜZİK KUTUSU
+    // 5. ŞARKI: FLÖRT - MANOLYA (YOUTUBE IFRAME + WEB AUDIO YEDEK)
     // =========================================================
+    let ytPlayer = null;
+    let ytReady = false;
+    let isMusicPlaying = false;
+
+    // YouTube IFrame API hazır olduğunda çağrılır
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player('ytPlayer', {
+        height: '1',
+        width: '1',
+        videoId: 'L6dU9a7lOHo', // Flört - Manolya
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          disablekb: 1,
+          enablejsapi: 1,
+          loop: 1,
+          playlist: 'L6dU9a7lOHo',
+          origin: window.location.origin
+        },
+        events: {
+          onReady: function(e) {
+            ytReady = true;
+            try { e.target.setVolume(85); } catch(err) {}
+          },
+          onStateChange: function(event) {
+            if (event.data === YT.PlayerState.PLAYING) {
+              setMusicUI(true);
+            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+              setMusicUI(false);
+            }
+          }
+        }
+      });
+    };
+
+    // Web Audio Müzik Kutusu Yedeği (YouTube engellenirse veya çevrimdışıysa)
     let audioCtx = null;
-    let isPlaying = false;
-    let musicInterval = null;
+    let backupInterval = null;
+    const manolyaChords = [261.63, 329.63, 392.00, 523.25, 220.00, 261.63, 329.63, 440.00, 174.61, 220.00, 261.63, 349.23, 196.00, 246.94, 293.66, 392.00];
+    let noteIdx = 0;
 
-    // Romantik aşk akor melodisi (Frekanslar - C majör / A minör arpejler)
-    const romanticNotes = [
-      261.63, 329.63, 392.00, 523.25, // C - E - G - C
-      220.00, 261.63, 329.63, 440.00, // A - C - E - A
-      174.61, 220.00, 261.63, 349.23, // F - A - C - F
-      196.00, 246.94, 293.66, 392.00, // G - B - D - G
-      220.00, 329.63, 440.00, 523.25, // A minör variyasyon
-      261.63, 392.00, 523.25, 659.25  // C yüksek variyasyon
-    ];
-    let noteIndex = 0;
-
-    function playMusicBoxNote(freq) {
+    function playBackupNote(freq) {
       if (!audioCtx) return;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
-
-      osc.type = 'sine'; // Yumuşak saf müzik kutusu tınısı
+      osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-
       gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.22, audioCtx.currentTime + 0.06);
+      gain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.06);
       gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-
       osc.connect(gain);
       gain.connect(audioCtx.destination);
-
       osc.start();
       osc.stop(audioCtx.currentTime + 1.85);
     }
 
-    function toggleMusic() {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-
+    function setMusicUI(playing) {
+      isMusicPlaying = playing;
       const musicBtn = document.getElementById('musicBtn');
       const musicBtnText = document.getElementById('musicBtnText');
-
-      if (isPlaying) {
-        clearInterval(musicInterval);
-        isPlaying = false;
-        musicBtn.classList.remove('playing');
-        musicBtnText.innerText = 'Müzik Çal ♫';
-      } else {
-        isPlaying = true;
+      if (playing) {
         musicBtn.classList.add('playing');
-        musicBtnText.innerText = 'Müzik Açık ♡';
-        playMusicBoxNote(romanticNotes[noteIndex]);
-        musicInterval = setInterval(() => {
-          noteIndex = (noteIndex + 1) % romanticNotes.length;
-          playMusicBoxNote(romanticNotes[noteIndex]);
-        }, 550);
+        musicBtnText.innerText = '♥ Flört - Manolya';
+      } else {
+        musicBtn.classList.remove('playing');
+        musicBtnText.innerText = 'Flört - Manolya ♫';
+      }
+    }
+
+    function toggleMusic() {
+      if (ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+        const state = ytPlayer.getPlayerState();
+        if (state === YT.PlayerState.PLAYING) {
+          ytPlayer.pauseVideo();
+          setMusicUI(false);
+        } else {
+          ytPlayer.playVideo();
+          setMusicUI(true);
+        }
+      } else {
+        // Yedek sentezleyici
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        if (isMusicPlaying) {
+          clearInterval(backupInterval);
+          setMusicUI(false);
+        } else {
+          setMusicUI(true);
+          playBackupNote(manolyaChords[noteIdx]);
+          backupInterval = setInterval(() => {
+            noteIdx = (noteIdx + 1) % manolyaChords.length;
+            playBackupNote(manolyaChords[noteIdx]);
+          }, 550);
+        }
       }
     }
 
@@ -1147,21 +1168,14 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     const polaroidCard = document.getElementById('polaroidCard');
     const photoInput = document.getElementById('photoInput');
     const polaroidImg = document.getElementById('polaroidImg');
-    const polaroidPlaceholder = document.getElementById('polaroidPlaceholder');
     const polaroidCaption = document.getElementById('polaroidCaption');
 
-    // Kayıtlı fotoğraf veya yerel foto.jpg yükleme
     function loadSavedPhoto() {
       const savedPhoto = localStorage.getItem('boquette_photo');
       if (savedPhoto) {
-        setPhoto(savedPhoto);
+        polaroidImg.src = savedPhoto;
       } else {
-        // Otomatik olarak aynı klasördeki foto.jpg veya photo.jpg'yi dener
-        const testImg = new Image();
-        testImg.onload = function() {
-          setPhoto(testImg.src);
-        };
-        testImg.src = './foto.jpg';
+        polaroidImg.src = './foto.jpg';
       }
 
       const savedCaption = localStorage.getItem('boquette_caption');
@@ -1172,14 +1186,10 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
 
     function setPhoto(dataUrl) {
       polaroidImg.src = dataUrl;
-      polaroidImg.style.display = 'block';
-      polaroidPlaceholder.style.display = 'none';
       localStorage.setItem('boquette_photo', dataUrl);
     }
 
-    // Fotoğrafa tıklayınca dosya seçici açılır
     polaroidCard.addEventListener('click', (e) => {
-      // Eğer caption düzenleniyorsa dosya seçiciyi açma
       if (e.target === polaroidCaption) return;
       photoInput.click();
     });
@@ -1195,7 +1205,7 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       }
     });
 
-    // Sürükle & Bırak (Drag and Drop) desteği
+    // Sürükle & Bırak
     polaroidCard.addEventListener('dragover', (e) => {
       e.preventDefault();
       polaroidCard.style.transform = 'scale(1.12) rotate(0deg)';
@@ -1218,7 +1228,6 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
       }
     });
 
-    // Not başlığını kaydet
     polaroidCaption.addEventListener('blur', () => {
       localStorage.setItem('boquette_caption', polaroidCaption.innerText.trim());
     });
@@ -1240,7 +1249,6 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     const letterTitle = document.getElementById('letterTitle');
     const letterBody = document.getElementById('letterBody');
 
-    // Kayıtlı mektubu yükle
     const savedLetterTitle = localStorage.getItem('boquette_letter_title');
     const savedLetterBody = localStorage.getItem('boquette_letter_body');
     if (savedLetterTitle) letterTitle.innerText = savedLetterTitle;
@@ -1292,22 +1300,21 @@ Seni her geçen gün daha çok seviyorum. İyi ki varsın... ♡
     });
 
     saveTextBtn.addEventListener('click', () => {
-      const val = bgTextInput.value.trim() || 'BALIMMMMM';
+      const val = bgTextInput.value.trim() || 'balım';
       bgCustomText = val;
       localStorage.setItem('boquette_bg_text', val);
       textModal.classList.remove('open');
     });
 
     // =========================================================
-    // 8. ETKİLEŞİM: TIKLAYINCA AÇAN ÇİÇEKLER & SAÇILAN KALPLER
+    // 8. ETKİLEŞİM: TIKLAYINCA AÇAN MANOLYALAR & SAÇILAN KALPLER
     // =========================================================
     window.addEventListener('click', (e) => {
-      // Modallara veya butonlara tıklandıysa çiçeği sıfırlama
       if (e.target.closest('.modal-backdrop') || e.target.closest('.glass-btn') || e.target.closest('.polaroid-card')) {
         return;
       }
       
-      // Çiçekleri tekrar açtır
+      // Manolyaları tekrar açtır
       t0 = null;
 
       // Tıklanan yerden minik kalpler patlat

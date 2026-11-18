@@ -104,7 +104,6 @@
     function drawWrapper(sway) {
       const pinchY = -0.58;
 
-      // Arka buket kagidi (kraft / krem ton)
       for (let y = -0.90; y <= 0.64; y += 0.014) {
         let halfW;
         if (y >= pinchY) {
@@ -115,7 +114,6 @@
           halfW = 0.13 + t * 0.14;
         }
 
-        // Ust kenarda kagit kivrimi dalgasi
         const topEdge = 0.60 + Math.sin((y + 1) * 3) * 0.02;
 
         for (let x = -halfW; x <= halfW; x += 0.011) {
@@ -123,7 +121,6 @@
           const arch = y > 0.42 ? (1 - nx * nx) * 0.08 : 0;
           if (y > topEdge + arch) continue;
 
-          // Kagit katlama golgeleri
           const fold = Math.sin(nx * 11) * 0.14 + Math.cos(nx * 4.5) * 0.12;
           const edge = 1 - Math.abs(nx) * 0.28;
           const vFade = y < pinchY ? 0.65 : 0.72 + ((y - pinchY) / 1.2) * 0.25;
@@ -135,7 +132,6 @@
         }
       }
 
-      // On buket kagidi (saplari saran V kesim)
       for (let y = -0.90; y <= -0.18; y += 0.014) {
         let halfW;
         if (y >= pinchY) {
@@ -148,7 +144,6 @@
 
         for (let x = -halfW; x <= halfW; x += 0.011) {
           const nx = x / halfW;
-          // Ust kisimda capraz V yaka kesimi
           const vCut = -0.34 + Math.abs(nx) * 0.18;
           if (y > vCut) continue;
 
@@ -162,7 +157,6 @@
         }
       }
 
-      // Kurdele bagi
       for (let y = pinchY - 0.032; y <= pinchY + 0.032; y += 0.01) {
         for (let x = -0.15; x <= 0.15; x += 0.01) {
           const nx = x / 0.15;
@@ -172,7 +166,6 @@
         }
       }
 
-      // Fiyonk kulaklari
       for (const side of [-1, 1]) {
         for (let t = 0; t <= Math.PI * 2; t += 0.08) {
           for (let r = 0.35; r <= 1.0; r += 0.2) {
@@ -185,7 +178,6 @@
         }
       }
 
-      // Sarkan kurdele uclari
       for (const side of [-1, 1]) {
         for (let u = 0; u <= 1; u += 0.025) {
           const tx = side * (0.03 + u * 0.11 + Math.sin(u * 4) * 0.015);
@@ -307,15 +299,25 @@
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, w, h);
 
+      // Arka plan yildizlari
       ctx.font = `bold ${CH}px "Courier New", monospace`;
       ctx.textBaseline = 'top';
-
       for (let i = 0; i < stars.length; i++) {
         const d = stars[i];
         const a = 0.12 + 0.35 * (0.5 + 0.5 * Math.sin(sec * d.sp + d.p));
         ctx.fillStyle = `rgba(255,255,255,${a.toFixed(2)})`;
         ctx.fillText('.', d.x, d.y);
       }
+
+      // Arka plan kocaman yazi
+      ctx.save();
+      const fontSize = Math.floor(Math.min(w * 0.20, h * 0.32));
+      ctx.font = `900 ${fontSize}px "Arial Black", "Helvetica Neue", sans-serif`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillStyle = 'rgba(255, 200, 220, 0.16)';
+      ctx.fillText('balımmm', w * 0.5, h * 0.48);
+      ctx.restore();
 
       const globalSway = Math.sin(sec * 0.8) * 0.015;
       drawWrapper(globalSway);

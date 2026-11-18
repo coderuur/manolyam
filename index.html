@@ -4,9 +4,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>manolya ♡</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
+  <title>lily_bouquet</title>
   
+  <!-- Fotoğraftan Üretilen Çoklu Çözünürlüklü Favicon / Logo -->
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+
   <!-- Google Fonts: Romantik & Zarif Tipografi -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +31,7 @@
       height: 100%;
       background: #040206;
       overflow: hidden;
-      cursor: default;
+      cursor: pointer;
       font-family: 'Playfair Display', serif;
       user-select: none;
     }
@@ -42,7 +47,7 @@
       z-index: 1;
     }
 
-    /* Kalp & Manolya Yaprağı Parçacık Katmanı */
+    /* Manolya Yaprağı & Efekt Katmanı */
     #fx-canvas {
       position: absolute;
       top: 0;
@@ -63,119 +68,13 @@
     }
 
     /* ===================================================
-       1. POLAROID FOTOĞRAF KARTI (Sol Üst Köşe)
+       SAĞ ALT: AŞK MEKTUBU BUTONU
        =================================================== */
-    .polaroid-card {
+    .letter-btn {
       position: absolute;
-      top: 22px;
-      left: 22px;
+      bottom: 24px;
+      right: 24px;
       z-index: 20;
-      width: 150px;
-      padding: 10px 10px 14px 10px;
-      background: #fbf9f5;
-      background-image: linear-gradient(135deg, #fff 0%, #f7f3ec 100%);
-      border-radius: 4px;
-      box-shadow: 
-        0 14px 30px rgba(0, 0, 0, 0.55),
-        0 0 25px rgba(255, 120, 170, 0.22),
-        0 2px 4px rgba(255, 255, 255, 0.6) inset;
-      transform: rotate(-3.5deg);
-      transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .polaroid-card:hover {
-      transform: rotate(0deg) scale(1.08) translateY(-4px);
-      box-shadow: 
-        0 22px 45px rgba(0, 0, 0, 0.65),
-        0 0 35px rgba(255, 105, 180, 0.45);
-    }
-
-    /* Polaroid üstündeki minik pembe ataç / kalp iğnesi */
-    .polaroid-pin {
-      position: absolute;
-      top: -10px;
-      width: 32px;
-      height: 16px;
-      background: rgba(255, 150, 185, 0.85);
-      backdrop-filter: blur(4px);
-      border-radius: 2px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-      transform: rotate(4deg);
-    }
-
-    .polaroid-img-wrapper {
-      width: 130px;
-      height: 130px;
-      background: #110e17;
-      border-radius: 2px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.3) inset;
-    }
-
-    .polaroid-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .polaroid-card:hover .polaroid-img-wrapper img {
-      transform: scale(1.05);
-    }
-
-    /* Polaroid altındaki romantik el yazısı not */
-    .polaroid-caption {
-      margin-top: 9px;
-      font-family: 'Caveat', cursive;
-      font-size: 18px;
-      color: #3b2832;
-      text-align: center;
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      outline: none;
-      cursor: text;
-    }
-
-    .polaroid-caption:hover {
-      color: #d12e66;
-    }
-
-    .polaroid-edit-hint {
-      position: absolute;
-      bottom: 2px;
-      right: 6px;
-      font-size: 9px;
-      color: #9c8a94;
-      font-family: sans-serif;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .polaroid-card:hover .polaroid-edit-hint {
-      opacity: 0.8;
-    }
-
-    /* ===================================================
-       2. SAĞ ÜST KONTROL BUTONLARI (Flört - Manolya)
-       =================================================== */
-    .top-controls {
-      position: absolute;
-      top: 22px;
-      right: 22px;
-      z-index: 20;
-      display: flex;
-      gap: 12px;
     }
 
     .glass-btn {
@@ -184,10 +83,10 @@
       -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(255, 160, 200, 0.3);
       border-radius: 30px;
-      padding: 9px 18px;
+      padding: 9px 20px;
       color: #ffe5ef;
       font-family: 'Caveat', cursive;
-      font-size: 17px;
+      font-size: 18px;
       display: flex;
       align-items: center;
       gap: 9px;
@@ -202,47 +101,6 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 105, 180, 0.35);
       color: #fff;
-    }
-
-    .glass-btn.playing {
-      background: rgba(220, 40, 100, 0.45);
-      border-color: #ff6599;
-      box-shadow: 0 0 22px rgba(255, 105, 180, 0.5);
-    }
-
-    /* Müzik ses dalgası animasyonu */
-    .sound-wave {
-      display: inline-flex;
-      align-items: center;
-      gap: 2.5px;
-      height: 14px;
-    }
-
-    .sound-wave span {
-      width: 2.5px;
-      background: #ff85b3;
-      border-radius: 2px;
-      height: 5px;
-      transition: height 0.2s;
-    }
-
-    .playing .sound-wave span:nth-child(1) { animation: wave 0.8s infinite ease-in-out; }
-    .playing .sound-wave span:nth-child(2) { animation: wave 0.8s infinite ease-in-out 0.2s; }
-    .playing .sound-wave span:nth-child(3) { animation: wave 0.8s infinite ease-in-out 0.4s; }
-
-    @keyframes wave {
-      0%, 100% { height: 4px; }
-      50% { height: 14px; }
-    }
-
-    /* ===================================================
-       3. SAĞ ALT: AŞK MEKTUBU / NOT KARTI
-       =================================================== */
-    .letter-btn {
-      position: absolute;
-      bottom: 24px;
-      right: 24px;
-      z-index: 20;
     }
 
     /* Modal Arka Planı */
@@ -275,7 +133,7 @@
         linear-gradient(to bottom, #fffefb, #f7efe6);
       background-size: 16px 16px, 100% 100%;
       border-radius: 8px;
-      padding: 30px 28px 24px 28px;
+      padding: 34px 28px 28px 28px;
       box-shadow: 
         0 25px 60px rgba(0, 0, 0, 0.8),
         0 0 40px rgba(255, 120, 160, 0.35);
@@ -296,7 +154,7 @@
       transform: translateX(-50%);
       width: 40px;
       height: 40px;
-      background: radial-gradient(circle, #e62b5a, #8f0d2c);
+      background: radial-gradient(circle, #c42750, #7a0b26);
       border-radius: 50%;
       box-shadow: 0 4px 10px rgba(0,0,0,0.4);
       display: flex;
@@ -304,7 +162,7 @@
       justify-content: center;
       color: #ffd1dc;
       font-size: 18px;
-      border: 2px solid #b8143d;
+      border: 2px solid #a31135;
     }
 
     .letter-close {
@@ -313,10 +171,11 @@
       right: 16px;
       background: none;
       border: none;
-      font-size: 22px;
+      font-size: 24px;
       color: #9c8585;
       cursor: pointer;
       transition: color 0.2s;
+      line-height: 1;
     }
 
     .letter-close:hover {
@@ -328,76 +187,25 @@
       font-size: 34px;
       color: #8c1d40;
       text-align: center;
-      margin-top: 8px;
-      margin-bottom: 14px;
-      outline: none;
+      margin-top: 6px;
+      margin-bottom: 16px;
     }
 
     .letter-body {
       font-family: 'Caveat', cursive;
-      font-size: 20px;
-      line-height: 1.55;
-      color: #402c34;
+      font-size: 21px;
+      line-height: 1.6;
+      color: #3b2832;
       width: 100%;
       min-height: 150px;
-      max-height: 270px;
+      max-height: 300px;
       overflow-y: auto;
       border: 1px dashed rgba(200, 150, 170, 0.35);
-      padding: 14px;
+      padding: 18px;
       border-radius: 6px;
-      background: rgba(255, 255, 255, 0.5);
-      outline: none;
+      background: rgba(255, 255, 255, 0.55);
       white-space: pre-wrap;
-    }
-
-    .letter-actions {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 16px;
-    }
-
-    .letter-save-btn {
-      background: linear-gradient(135deg, #d82b68, #991343);
-      color: #fff;
-      border: none;
-      border-radius: 20px;
-      padding: 8px 20px;
-      font-family: 'Caveat', cursive;
-      font-size: 18px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(216, 43, 104, 0.4);
-      transition: all 0.2s;
-    }
-
-    .letter-save-btn:hover {
-      transform: scale(1.04);
-      box-shadow: 0 6px 20px rgba(216, 43, 104, 0.6);
-    }
-
-    .letter-date {
-      font-family: 'Caveat', cursive;
-      font-size: 15px;
-      color: #8f7982;
-    }
-
-    /* Arka Plan Metni Düzenleme */
-    .custom-input {
-      width: 100%;
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid #e0c5d2;
-      font-family: 'Caveat', cursive;
-      font-size: 19px;
-      color: #4a2d3c;
-      margin-bottom: 14px;
-      outline: none;
-      background: #fff;
-    }
-
-    .custom-input:focus {
-      border-color: #d82b68;
-      box-shadow: 0 0 10px rgba(216, 43, 104, 0.2);
+      text-align: center;
     }
 
     /* Alt merkezde hafif romantik ipucu */
@@ -425,33 +233,20 @@
 
     /* MOBİL UYUMLULUK */
     @media (max-width: 640px) {
-      .polaroid-card {
-        top: 14px;
-        left: 14px;
-        width: 115px;
-        padding: 8px 8px 10px 8px;
-        transform: rotate(-2deg);
-      }
-      .polaroid-img-wrapper {
-        width: 99px;
-        height: 99px;
-      }
-      .polaroid-caption {
-        font-size: 14px;
-        margin-top: 5px;
-      }
-      .top-controls {
-        top: 14px;
-        right: 14px;
-        gap: 8px;
-      }
-      .glass-btn {
-        padding: 6px 12px;
-        font-size: 14px;
-      }
       .letter-btn {
         bottom: 16px;
         right: 16px;
+      }
+      .glass-btn {
+        padding: 7px 15px;
+        font-size: 15px;
+      }
+      .letter-title {
+        font-size: 28px;
+      }
+      .letter-body {
+        font-size: 19px;
+        padding: 14px;
       }
       .bottom-hint {
         bottom: 14px;
@@ -465,41 +260,13 @@
   <!-- 3D Manolya Buketi Canvas -->
   <canvas id="c"></canvas>
 
-  <!-- Uçuşan Manolya Yaprakları & Kalp Katmanı -->
+  <!-- Uçuşan Manolya Yaprakları Katmanı -->
   <canvas id="fx-canvas"></canvas>
 
   <!-- Romantik Işık & Ambiyans -->
   <div class="ambient-glow"></div>
 
-  <!-- SOL ÜST: POLAROID FOTOĞRAF KARTI -->
-  <div class="polaroid-card" id="polaroidCard" title="Fotoğrafı değiştirmek veya incelemek için tıkla ♡">
-    <div class="polaroid-pin"></div>
-    <div class="polaroid-img-wrapper" id="polaroidImgWrap">
-      <img id="polaroidImg" src="./foto.jpg" alt="balım ♡">
-    </div>
-    <div class="polaroid-caption" id="polaroidCaption" contenteditable="true" spellcheck="false" title="Yazıyı değiştirebilirsin">
-      balım ♡
-    </div>
-    <span class="polaroid-edit-hint">✎ tıkla</span>
-  </div>
-
-  <!-- Gizli Fotoğraf Yükleyici -->
-  <input type="file" id="photoInput" accept="image/*" style="display: none;">
-
-  <!-- SAĞ ÜST: KONTROLLER (Flört - Manolya Müziği & Metin Ayarla) -->
-  <div class="top-controls">
-    <button class="glass-btn" id="musicBtn" title="Flört - Manolya çal">
-      <div class="sound-wave">
-        <span></span><span></span><span></span>
-      </div>
-      <span id="musicBtnText">Flört - Manolya ♫</span>
-    </button>
-    <button class="glass-btn" id="customTextBtn" title="Arka plandaki yazıyı değiştir">
-      <span>✨ Yazı</span>
-    </button>
-  </div>
-
-  <!-- SAĞ ALT: AŞK MEKTUBU BUTONU -->
+  <!-- SAĞ ALT: SANA BİR MEKTUP VAR BUTONU -->
   <div class="letter-btn">
     <button class="glass-btn" id="openLetterBtn">
       <span>💌 Sana Bir Mektup Var</span>
@@ -508,48 +275,25 @@
 
   <!-- ALT ORTA İPUCU -->
   <div class="bottom-hint">
-    ✦ Manolyaların yeniden açması ve etrafa kalpler saçmak için ekrana dokun ✦
+    ✦ Manolyaların yeniden açması için ekrana dokun ✦
   </div>
 
   <!-- AŞK MEKTUBU MODALI (Özel Şiir & Not) -->
   <div class="modal-backdrop" id="letterModal">
     <div class="love-letter-card">
-      <div class="letter-wax-seal">💌</div>
+      <div class="letter-wax-seal">✉</div>
       <button class="letter-close" id="closeLetterBtn">&times;</button>
-      <div class="letter-title" id="letterTitle" contenteditable="true" spellcheck="false">
-        Sana Bir Mektup Var... ♡
-      </div>
-      <div class="letter-body" id="letterBody" contenteditable="true" spellcheck="false">
-Gözlerini gözlüyorum gözlerimde,
+      <div class="letter-title">Sana Bir Mektup Var</div>
+      <div class="letter-body">Gözlerini gözlüyorum gözlerimde,
 Gözlerin gözlerimin en derin gözünde...
 Gözümün gözünü görmüyorsun lakin,
 Gözlerim her zaman senin gözünde...
 
-Seni çok seviyorum balım ♡
-      </div>
-      <div class="letter-actions">
-        <span class="letter-date" id="letterDate">Sonsuza dek... ♡</span>
-        <button class="letter-save-btn" id="saveLetterBtn">Notu Kaydet ♡</button>
-      </div>
+Seni çok seviyorum balımmmmm.</div>
     </div>
   </div>
 
-  <!-- ARKA PLAN METNİ DÜZENLEME MODALI -->
-  <div class="modal-backdrop" id="textModal">
-    <div class="love-letter-card" style="max-width: 380px;">
-      <button class="letter-close" id="closeTextModal">&times;</button>
-      <div class="letter-title" style="font-size: 28px; margin-bottom: 8px;">Arka Plan Yazısı</div>
-      <p style="font-family: 'Caveat', cursive; font-size: 16px; color: #705461; margin-bottom: 14px; text-align: center;">
-        Arka planda romantik bir şekilde tekrarlayan yazıyı dilediğin gibi belirle:
-      </p>
-      <input type="text" id="bgTextInput" class="custom-input" placeholder="Örn: BALIM, SENİ SEVİYORUM..." value="balım">
-      <div style="display: flex; justify-content: flex-end; gap: 10px;">
-        <button class="letter-save-btn" id="saveTextBtn">Kaydet ✨</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- GİZLİ YOUTUBE AUDIO CONTAINER (Flört - Manolya: L6dU9a7lOHo) -->
+  <!-- GİZLİ YOUTUBE AUDIO CONTAINER (Flört - Manolya: uvbg0l9SpUA) -->
   <div id="ytAudioContainer" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0.01; pointer-events: none;">
     <div id="ytPlayer"></div>
   </div>
@@ -576,8 +320,8 @@ Seni çok seviyorum balım ♡
     let stars = [];
     let t0 = null;
 
-    // Arka plan metni: "balım"
-    let bgCustomText = localStorage.getItem('boquette_bg_text') || 'balım';
+    // Arka plan metni: 5 M ile BALIMMMMM
+    const bgCustomText = 'BALIMMMMM';
 
     // =========================================================
     // MANOLYA ÇİÇEK BUKETİ (Soulangeana, Grandiflora, Nigra)
@@ -663,7 +407,6 @@ Seni çok seviyorum balım ♡
       return [x2, y1, z2];
     }
 
-    // Romantik Şık Buket Ambalajı (Kraft & Rose Gold Tüller)
     function drawWrapper(sway) {
       const pinchY = -0.58;
 
@@ -756,7 +499,6 @@ Seni çok seviyorum balım ♡
       }
     }
 
-    // Manolya Dalı & Yaprakları
     function stem(f, sway) {
       const bx = f.x * 0.12;
       const by = -0.88;
@@ -771,7 +513,6 @@ Seni çok seviyorum balım ♡
         const cy = by + (ty - by) * t;
         const cz = bz + (tz - bz) * t;
         const l = 0.45 + 0.55 * t;
-        // Koyu ahşapsı manolya dalı
         put(cx, cy, cz, '|', 85 * l, 160 * l, 75 * l);
         put(cx + 0.007, cy, cz, ':', 55 * l, 120 * l, 50 * l);
       }
@@ -783,7 +524,6 @@ Seni çok seviyorum balım ♡
         const oz = bz + (tz - bz) * st;
 
         for (let u = 0; u <= 1; u += 0.022) {
-          // Dolgun parlak manolya yaprağı
           const lw = Math.sin(u * Math.PI) * 0.055;
           for (let v = -1; v <= 1; v += 0.22) {
             const lx = ox + side * (u * 0.26) + v * lw * 0.25;
@@ -797,10 +537,7 @@ Seni çok seviyorum balım ♡
       }
     }
 
-    // =========================================================
-    // 3D MANOLYA (MAGNOLIA) ÇİÇEK MATEMATİĞİ
-    // Geniş, etli, kadeh şeklinde 8 porselen yaprak ve merkezi koni
-    // =========================================================
+    // 3D Manolya (Magnolia) Çiçekleri
     function manolya(f, bloom, sway, sec) {
       const fx = f.x + sway;
       const fy = f.y;
@@ -809,17 +546,14 @@ Seni çok seviyorum balım ♡
       const [rm, gm, bm] = f.mid;
       const [r2, g2, b2] = f.tip;
 
-      // 8 adet geniş, kadeh şeklinde etli manolya yaprağı (4 iç, 4 dış)
       for (let p = 0; p < 8; p++) {
         const inner = (p & 1) === 1;
         const ang = f.rot + (p / 8) * Math.PI * 2 + Math.sin(sec * 0.65 + p) * 0.012;
         const ca = Math.cos(ang), sa = Math.sin(ang);
 
         for (let u = 0.04; u <= 1.0; u += 0.017) {
-          // Manolya yaprağı tepeye doğru geniştir ve dolgundur (pow 0.65)
           const pw = Math.sin(Math.pow(u, 0.65) * Math.PI) * (inner ? 0.35 : 0.42) * f.s;
           const rDist = u * f.s * (inner ? 0.24 + 0.72 * bloom : 0.26 + 0.88 * bloom);
-          // Manolya kadehi yukarı ve dışa doğru zarifçe çanaklaşır
           const zCurve = f.s * ((1 - bloom) * 0.52 * u + bloom * (0.24 * Math.sin(u * Math.PI * 0.95) + (inner ? 0.16 : 0.06) * u * u));
           const zLayer = inner ? 0.02 : -0.02;
 
@@ -830,8 +564,8 @@ Seni çok seviyorum balım ♡
 
             const [rx, ry, rz] = rotXY(lx, ly, lz, f.rx, f.ry);
 
-            const centerMix = Math.exp(-u * 4.0); // Tabandaki pembe/gül tonu
-            const tipMix = Math.pow(u, 1.8);       // Uçlardaki saf porselen beyazı
+            const centerMix = Math.exp(-u * 4.0);
+            const tipMix = Math.pow(u, 1.8);
             const vein = Math.exp(-Math.abs(v) * 6.5) * 0.22;
             const shade = Math.max(0.40, Math.min(1.22, 0.60 + (rz / f.s) * 0.32 + (1 - Math.abs(v) * 0.32) * 0.24 + vein));
 
@@ -850,7 +584,7 @@ Seni çok seviyorum balım ♡
         }
       }
 
-      // Manolyanın ortasındaki belirgin dik kadeh konisi ve altın polenler
+      // Manolyanın ortasındaki dik duran polen konisi
       if (bloom > 0.25) {
         for (let s = 0; s < 10; s++) {
           const sa = f.rot + (s / 10) * Math.PI * 2 + 0.25;
@@ -860,14 +594,14 @@ Seni çok seviyorum balım ♡
             const sz = 0.22 * t * f.s * bloom + 0.035;
             const [rx, ry, rz] = rotXY(sx, sy, sz, f.rx, f.ry);
             const isApex = t > 0.72;
-            put(fx + rx, fy + ry, fz + rz, isApex ? '♥' : ':', isApex ? 255 : 245, isApex ? 180 : 210, isApex ? 140 : 85);
+            put(fx + rx, fy + ry, fz + rz, isApex ? '*' : ':', isApex ? 255 : 245, isApex ? 210 : 210, isApex ? 160 : 85);
           }
         }
       }
     }
 
     // =========================================================
-    // 2. ROMANTİK ARKA PLAN METNİ ("balım")
+    // 2. ROMANTİK ARKA PLAN METNİ ("BALIMMMMM")
     // =========================================================
     function drawBackgroundText() {
       ctx.save();
@@ -877,12 +611,11 @@ Seni çok seviyorum balım ♡
       ctx.textAlign = 'left';
       ctx.textBaseline = 'top';
       
-      // Yumuşak romantik neon pembe ışıltı
       ctx.shadowColor = 'rgba(255, 110, 160, 0.45)';
       ctx.shadowBlur = 14;
       ctx.fillStyle = 'rgba(255, 195, 220, 0.13)';
 
-      const text = (bgCustomText.trim() || 'balım') + '   ';
+      const text = bgCustomText + '   ';
       const stepX = ctx.measureText(text).width;
       const stepY = fontSize * 1.35;
 
@@ -896,10 +629,9 @@ Seni çok seviyorum balım ♡
     }
 
     // =========================================================
-    // 3. UÇUŞAN MANOLYA YAPRAKLARI & KALPLER (FX)
+    // 3. UÇUŞAN MANOLYA YAPRAKLARI
     // =========================================================
     let petals = [];
-    let clickHearts = [];
 
     function initParticles() {
       petals = [];
@@ -914,25 +646,7 @@ Seni çok seviyorum balım ♡
           angle: Math.random() * Math.PI * 2,
           angularSpeed: (Math.random() - 0.5) * 0.035,
           opacity: 0.25 + Math.random() * 0.50,
-          // Manolya yaprak tonları: Porselen beyazı ve pudra pembe
           color: Math.random() > 0.5 ? 'rgba(255, 235, 245,' : 'rgba(255, 160, 195,'
-        });
-      }
-    }
-
-    function spawnHeartBurst(x, y) {
-      const count = 12;
-      for (let i = 0; i < count; i++) {
-        const angle = (Math.PI * 2 / count) * i + (Math.random() - 0.5);
-        const speed = 2 + Math.random() * 4;
-        clickHearts.push({
-          x: x,
-          y: y,
-          vx: Math.cos(angle) * speed,
-          vy: Math.sin(angle) * speed - 1.5,
-          size: 14 + Math.random() * 12,
-          alpha: 1,
-          rot: (Math.random() - 0.5) * 0.4
         });
       }
     }
@@ -940,7 +654,6 @@ Seni çok seviyorum balım ♡
     function drawFX() {
       fxCtx.clearRect(0, 0, w, h);
 
-      // Manolya yaprakları süzülüşü
       for (let i = 0; i < petals.length; i++) {
         const p = petals[i];
         p.y += p.speedY;
@@ -959,36 +672,9 @@ Seni çok seviyorum balım ♡
         fxCtx.shadowColor = 'rgba(255, 140, 180, 0.4)';
         fxCtx.shadowBlur = 6;
 
-        // Geniş kadeh manolya yaprağı
         fxCtx.beginPath();
         fxCtx.ellipse(0, 0, p.size * 1.4, p.size * 0.85, 0, 0, Math.PI * 2);
         fxCtx.fill();
-        fxCtx.restore();
-      }
-
-      // Tıklamayla saçılan kalpler
-      for (let i = clickHearts.length - 1; i >= 0; i--) {
-        const h = clickHearts[i];
-        h.x += h.vx;
-        h.y += h.vy;
-        h.vy += 0.08;
-        h.alpha -= 0.018;
-
-        if (h.alpha <= 0) {
-          clickHearts.splice(i, 1);
-          continue;
-        }
-
-        fxCtx.save();
-        fxCtx.translate(h.x, h.y);
-        fxCtx.scale(h.alpha, h.alpha);
-        fxCtx.font = `${h.size}px serif`;
-        fxCtx.textAlign = 'center';
-        fxCtx.textBaseline = 'middle';
-        fxCtx.fillStyle = `rgba(255, 60, 120, ${h.alpha})`;
-        fxCtx.shadowColor = '#ff2b70';
-        fxCtx.shadowBlur = 10;
-        fxCtx.fillText('❤', 0, 0);
         fxCtx.restore();
       }
     }
@@ -1016,7 +702,7 @@ Seni çok seviyorum balım ♡
         ctx.fillText(d.isPink ? '*' : '.', d.x, d.y);
       }
 
-      // Arka Plan Romantik Metni: "balım"
+      // Arka Plan Metni: "BALIMMMMM"
       drawBackgroundText();
 
       // Buket ve Manolyalar
@@ -1045,27 +731,24 @@ Seni çok seviyorum balım ♡
         }
       }
 
-      // FX Parçacıkları (Manolya yaprakları + kalpler)
       drawFX();
-
       requestAnimationFrame(frame);
     }
 
     // =========================================================
-    // 5. ŞARKI: FLÖRT - MANOLYA (YOUTUBE IFRAME + WEB AUDIO YEDEK)
+    // 5. ŞARKI: FLÖRT - MANOLYA (OTOMATİK ÇALMA)
     // =========================================================
     let ytPlayer = null;
     let ytReady = false;
-    let isMusicPlaying = false;
+    let musicStarted = false;
 
-    // YouTube IFrame API hazır olduğunda çağrılır
     window.onYouTubeIframeAPIReady = function() {
       ytPlayer = new YT.Player('ytPlayer', {
         height: '1',
         width: '1',
-        videoId: 'uvbg0l9SpUA', // Flört - Manolya (Resmi Manolya Parçası)
+        videoId: 'uvbg0l9SpUA', // Flört - Manolya
         playerVars: {
-          autoplay: 0,
+          autoplay: 1,
           controls: 0,
           disablekb: 1,
           enablejsapi: 1,
@@ -1076,178 +759,39 @@ Seni çok seviyorum balım ♡
         events: {
           onReady: function(e) {
             ytReady = true;
-            try { e.target.setVolume(85); } catch(err) {}
-          },
-          onStateChange: function(event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-              setMusicUI(true);
-            } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-              setMusicUI(false);
-            }
+            try {
+              e.target.unMute();
+              e.target.setVolume(85);
+              e.target.playVideo();
+            } catch(err) {}
           }
         }
       });
     };
 
-    // Web Audio Müzik Kutusu Yedeği (YouTube engellenirse veya çevrimdışıysa)
-    let audioCtx = null;
-    let backupInterval = null;
-    const manolyaChords = [261.63, 329.63, 392.00, 523.25, 220.00, 261.63, 329.63, 440.00, 174.61, 220.00, 261.63, 349.23, 196.00, 246.94, 293.66, 392.00];
-    let noteIdx = 0;
-
-    function playBackupNote(freq) {
-      if (!audioCtx) return;
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.06);
-      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.8);
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-      osc.start();
-      osc.stop(audioCtx.currentTime + 1.85);
-    }
-
-    function setMusicUI(playing) {
-      isMusicPlaying = playing;
-      const musicBtn = document.getElementById('musicBtn');
-      const musicBtnText = document.getElementById('musicBtnText');
-      if (playing) {
-        musicBtn.classList.add('playing');
-        musicBtnText.innerText = '♥ Flört - Manolya';
-      } else {
-        musicBtn.classList.remove('playing');
-        musicBtnText.innerText = 'Flört - Manolya ♫';
-      }
-    }
-
-    function toggleMusic() {
-      if (ytReady && ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
-        const state = ytPlayer.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-          ytPlayer.pauseVideo();
-          setMusicUI(false);
-        } else {
+    // Tarayıcı otomatik çalmayı kısıtladıysa ilk tıklama/dokunuşta anında başlat
+    function startMusicImmediately() {
+      if (musicStarted) return;
+      if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
+        try {
+          ytPlayer.unMute();
+          ytPlayer.setVolume(85);
           ytPlayer.playVideo();
-          setMusicUI(true);
-        }
-      } else {
-        // Yedek sentezleyici
-        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        if (isMusicPlaying) {
-          clearInterval(backupInterval);
-          setMusicUI(false);
-        } else {
-          setMusicUI(true);
-          playBackupNote(manolyaChords[noteIdx]);
-          backupInterval = setInterval(() => {
-            noteIdx = (noteIdx + 1) % manolyaChords.length;
-            playBackupNote(manolyaChords[noteIdx]);
-          }, 550);
-        }
+          musicStarted = true;
+        } catch(err) {}
       }
     }
 
-    document.getElementById('musicBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMusic();
-    });
+    window.addEventListener('click', startMusicImmediately);
+    window.addEventListener('touchstart', startMusicImmediately, { passive: true });
+    window.addEventListener('keydown', startMusicImmediately);
 
     // =========================================================
-    // 6. POLAROID FOTOĞRAF KARTI YÖNETİMİ & LOCALSTORAGE
-    // =========================================================
-    const polaroidCard = document.getElementById('polaroidCard');
-    const photoInput = document.getElementById('photoInput');
-    const polaroidImg = document.getElementById('polaroidImg');
-    const polaroidCaption = document.getElementById('polaroidCaption');
-
-    function loadSavedPhoto() {
-      const savedPhoto = localStorage.getItem('boquette_photo');
-      if (savedPhoto) {
-        polaroidImg.src = savedPhoto;
-      } else {
-        polaroidImg.src = './foto.jpg';
-      }
-
-      const savedCaption = localStorage.getItem('boquette_caption');
-      if (savedCaption) {
-        polaroidCaption.innerText = savedCaption;
-      }
-    }
-
-    function setPhoto(dataUrl) {
-      polaroidImg.src = dataUrl;
-      localStorage.setItem('boquette_photo', dataUrl);
-    }
-
-    polaroidCard.addEventListener('click', (e) => {
-      if (e.target === polaroidCaption) return;
-      photoInput.click();
-    });
-
-    photoInput.addEventListener('change', (e) => {
-      const file = e.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          setPhoto(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    // Sürükle & Bırak
-    polaroidCard.addEventListener('dragover', (e) => {
-      e.preventDefault();
-      polaroidCard.style.transform = 'scale(1.12) rotate(0deg)';
-    });
-
-    polaroidCard.addEventListener('dragleave', () => {
-      polaroidCard.style.transform = '';
-    });
-
-    polaroidCard.addEventListener('drop', (e) => {
-      e.preventDefault();
-      polaroidCard.style.transform = '';
-      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-        const file = e.dataTransfer.files[0];
-        const reader = new FileReader();
-        reader.onload = (event) => {
-          setPhoto(event.target.result);
-        };
-        reader.readAsDataURL(file);
-      }
-    });
-
-    polaroidCaption.addEventListener('blur', () => {
-      localStorage.setItem('boquette_caption', polaroidCaption.innerText.trim());
-    });
-
-    polaroidCaption.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        polaroidCaption.blur();
-      }
-    });
-
-    // =========================================================
-    // 7. AŞK MEKTUBU & ARKA PLAN YAZI MODALLARI
+    // 6. AŞK MEKTUBU MODALI
     // =========================================================
     const openLetterBtn = document.getElementById('openLetterBtn');
     const letterModal = document.getElementById('letterModal');
     const closeLetterBtn = document.getElementById('closeLetterBtn');
-    const saveLetterBtn = document.getElementById('saveLetterBtn');
-    const letterTitle = document.getElementById('letterTitle');
-    const letterBody = document.getElementById('letterBody');
-
-    const savedLetterTitle = localStorage.getItem('boquette_letter_title_v2');
-    const savedLetterBody = localStorage.getItem('boquette_letter_body_v2');
-    if (savedLetterTitle) letterTitle.innerText = savedLetterTitle;
-    if (savedLetterBody) letterBody.innerText = savedLetterBody;
 
     openLetterBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -1262,75 +806,21 @@ Seni çok seviyorum balım ♡
       if (e.target === letterModal) letterModal.classList.remove('open');
     });
 
-    saveLetterBtn.addEventListener('click', () => {
-      localStorage.setItem('boquette_letter_title_v2', letterTitle.innerText.trim());
-      localStorage.setItem('boquette_letter_body_v2', letterBody.innerText.trim());
-      saveLetterBtn.innerText = 'Kaydedildi ♡';
-      setTimeout(() => {
-        saveLetterBtn.innerText = 'Notu Kaydet ♡';
-        letterModal.classList.remove('open');
-      }, 700);
-    });
-
-    // Arka Plan Metni Modalı
-    const customTextBtn = document.getElementById('customTextBtn');
-    const textModal = document.getElementById('textModal');
-    const closeTextModal = document.getElementById('closeTextModal');
-    const saveTextBtn = document.getElementById('saveTextBtn');
-    const bgTextInput = document.getElementById('bgTextInput');
-
-    bgTextInput.value = bgCustomText;
-
-    customTextBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      textModal.classList.add('open');
-    });
-
-    closeTextModal.addEventListener('click', () => {
-      textModal.classList.remove('open');
-    });
-
-    textModal.addEventListener('click', (e) => {
-      if (e.target === textModal) textModal.classList.remove('open');
-    });
-
-    saveTextBtn.addEventListener('click', () => {
-      const val = bgTextInput.value.trim() || 'balım';
-      bgCustomText = val;
-      localStorage.setItem('boquette_bg_text', val);
-      textModal.classList.remove('open');
-    });
-
     // =========================================================
-    // 8. ETKİLEŞİM: TIKLAYINCA AÇAN MANOLYALAR & SAÇILAN KALPLER
+    // 7. ETKİLEŞİM: TIKLAYINCA AÇAN MANOLYALAR
     // =========================================================
     window.addEventListener('click', (e) => {
-      if (e.target.closest('.modal-backdrop') || e.target.closest('.glass-btn') || e.target.closest('.polaroid-card')) {
+      if (e.target.closest('.modal-backdrop') || e.target.closest('.glass-btn')) {
         return;
       }
-      
       // Manolyaları tekrar açtır
       t0 = null;
-
-      // Tıklanan yerden minik kalpler patlat
-      spawnHeartBurst(e.clientX, e.clientY);
     });
-
-    // Mobil dokunma desteği
-    window.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches[0]) {
-        const touch = e.touches[0];
-        if (!e.target.closest('.modal-backdrop') && !e.target.closest('.glass-btn') && !e.target.closest('.polaroid-card')) {
-          spawnHeartBurst(touch.clientX, touch.clientY);
-        }
-      }
-    }, { passive: true });
 
     window.addEventListener('resize', setup);
 
     // BAŞLAT
     setup();
-    loadSavedPhoto();
     requestAnimationFrame(frame);
   </script>
 </body>

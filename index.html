@@ -275,7 +275,7 @@
 
   <!-- ALT ORTA İPUCU -->
   <div class="bottom-hint">
-    ✦ Manolyaların yeniden açması için ekrana dokun ✦
+    Manolyaların yeniden açması için ekrana dokun
   </div>
 
   <!-- AŞK MEKTUBU MODALI (Özel Şiir & Not) -->
@@ -293,13 +293,8 @@ Seni çok seviyorum balımmmmm.</div>
     </div>
   </div>
 
-  <!-- GİZLİ YOUTUBE AUDIO CONTAINER (Flört - Manolya: uvbg0l9SpUA) -->
-  <div id="ytAudioContainer" style="position: absolute; top: -9999px; left: -9999px; width: 1px; height: 1px; overflow: hidden; opacity: 0.01; pointer-events: none;">
-    <div id="ytPlayer"></div>
-  </div>
-
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
+  <!-- YEREL HTML5 AUDIO (Flört - Manolya: Doğrudan & Donmasız) -->
+  <audio id="bgAudio" src="./manolya.mp3" preload="auto" loop></audio>
 
   <script>
     // =========================================================
@@ -736,55 +731,25 @@ Seni çok seviyorum balımmmmm.</div>
     }
 
     // =========================================================
-    // 5. ŞARKI: FLÖRT - MANOLYA (OTOMATİK ÇALMA)
+    // 5. ŞARKI: FLÖRT - MANOLYA (DOĞRUDAN HTML5 AUDIO & ANINDA ÇALMA)
     // =========================================================
-    let ytPlayer = null;
-    let ytReady = false;
-    let musicStarted = false;
+    const bgAudio = document.getElementById('bgAudio');
+    bgAudio.volume = 0.85;
 
-    window.onYouTubeIframeAPIReady = function() {
-      ytPlayer = new YT.Player('ytPlayer', {
-        height: '1',
-        width: '1',
-        videoId: 'uvbg0l9SpUA', // Flört - Manolya
-        playerVars: {
-          autoplay: 1,
-          controls: 0,
-          disablekb: 1,
-          enablejsapi: 1,
-          loop: 1,
-          playlist: 'uvbg0l9SpUA',
-          origin: window.location.origin
-        },
-        events: {
-          onReady: function(e) {
-            ytReady = true;
-            try {
-              e.target.unMute();
-              e.target.setVolume(85);
-              e.target.playVideo();
-            } catch(err) {}
-          }
-        }
-      });
-    };
-
-    // Tarayıcı otomatik çalmayı kısıtladıysa ilk tıklama/dokunuşta anında başlat
-    function startMusicImmediately() {
-      if (musicStarted) return;
-      if (ytReady && ytPlayer && typeof ytPlayer.playVideo === 'function') {
-        try {
-          ytPlayer.unMute();
-          ytPlayer.setVolume(85);
-          ytPlayer.playVideo();
-          musicStarted = true;
-        } catch(err) {}
+    function playAudioInstant() {
+      if (bgAudio.paused) {
+        bgAudio.play().catch(() => {});
       }
     }
 
-    window.addEventListener('click', startMusicImmediately);
-    window.addEventListener('touchstart', startMusicImmediately, { passive: true });
-    window.addEventListener('keydown', startMusicImmediately);
+    // Sayfa açılır açılmaz çalmayı dene
+    window.addEventListener('DOMContentLoaded', playAudioInstant);
+    window.addEventListener('load', playAudioInstant);
+
+    // Tarayıcı güvenlik ilkesi gereği ilk tıklama/dokunuşta anında ses kilidini aç
+    window.addEventListener('click', playAudioInstant, { passive: true });
+    window.addEventListener('touchstart', playAudioInstant, { passive: true });
+    window.addEventListener('keydown', playAudioInstant, { passive: true });
 
     // =========================================================
     // 6. AŞK MEKTUBU MODALI

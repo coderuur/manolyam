@@ -98,36 +98,40 @@
       gap: 9px;
       cursor: pointer;
       box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), 0 0 15px rgba(255, 105, 180, 0.20);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      touch-action: manipulation;
     }
 
-    .glass-btn:hover {
-      background: rgba(85, 25, 60, 0.80);
-      border-color: rgba(255, 180, 220, 0.65);
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 105, 180, 0.40);
-      color: #fff;
+    .glass-btn:active {
+      transform: scale(0.97);
     }
 
-    /* Modal Arka Planı */
+    /* Modal Arka Planı (Sıfır Kayma & Kesintisiz Yumuşaklık) */
     .modal-backdrop {
       position: fixed;
-      inset: 0;
-      background: rgba(6, 3, 10, 0.80);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 2, 8, 0.82);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
       z-index: 100;
-      display: none;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 18px;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      will-change: opacity;
     }
 
     .modal-backdrop.open {
-      display: flex;
       opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
 
     /* Aşk Mektubu Penceresi */
@@ -139,7 +143,7 @@
         radial-gradient(#e8d8d0 1px, transparent 1px),
         linear-gradient(to bottom, #fffefb, #f7efe6);
       background-size: 16px 16px, 100% 100%;
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 34px 28px 28px 28px;
       box-shadow: 
         0 25px 60px rgba(0, 0, 0, 0.85),
@@ -147,7 +151,8 @@
       position: relative;
       border: 1px solid #ebd9c8;
       transform: scale(0.92) translateY(20px);
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      transition: transform 0.32s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform;
     }
 
     .modal-backdrop.open .love-letter-card {
@@ -1009,21 +1014,34 @@ Seni çok seviyorum balımmmmm.</div>
       }, 20);
     }
 
-    openLetterBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
+    function openLetterModal() {
       letterModal.classList.add('open');
       fadeAudioVolume(0.50); // Şiiri okurken fon müziği tam %50 seviyesine iner
-    });
+    }
 
-    closeLetterBtn.addEventListener('click', () => {
+    function closeLetterModal() {
       letterModal.classList.remove('open');
       fadeAudioVolume(0.85); // Mektup kapanınca ses eski canlılığına (%85) döner
+    }
+
+    openLetterBtn.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+    });
+
+    openLetterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      e.preventDefault();
+      openLetterModal();
+    });
+
+    closeLetterBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLetterModal();
     });
 
     letterModal.addEventListener('click', (e) => {
       if (e.target === letterModal) {
-        letterModal.classList.remove('open');
-        fadeAudioVolume(0.85);
+        closeLetterModal();
       }
     });
 
@@ -1033,8 +1051,13 @@ Seni çok seviyorum balımmmmm.</div>
     let lastInteractionTime = 0;
 
     function handleScreenInteraction(e) {
-      // Mektup kartı veya mektup açma butonuna tıklandığında engelle
-      if (e.target.closest('.love-letter-card') || e.target.closest('.glass-btn')) {
+      // Modal açıkken veya mektup butonu/penceresine tıklandığında ekran etkileşimini engelle
+      if (
+        letterModal.classList.contains('open') ||
+        e.target.closest('.modal-backdrop') ||
+        e.target.closest('.letter-btn') ||
+        e.target.closest('.glass-btn')
+      ) {
         return;
       }
 
@@ -1057,7 +1080,19 @@ Seni çok seviyorum balımmmmm.</div>
 
     window.addEventListener('pointerdown', handleScreenInteraction);
 
-    window.addEventListener('resize', setup);
+    // Mobilde adres çubuğunun veya klavyenin ufak hareketlerinde canvas'ı gereksiz yere sıfırlama
+    let lastWidth = window.innerWidth;
+    let lastHeight = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      const newW = window.innerWidth;
+      const newH = window.innerHeight;
+      if (Math.abs(newW - lastWidth) > 30 || Math.abs(newH - lastHeight) > 120) {
+        lastWidth = newW;
+        lastHeight = newH;
+        setup();
+      }
+    });
 
     // BAŞLAT
     setup();

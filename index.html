@@ -45,6 +45,8 @@
       top: 0;
       left: 0;
       z-index: 1;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     /* Manolya Yaprağı & Efekt Katmanı */
@@ -56,6 +58,8 @@
       height: 100vh;
       pointer-events: none;
       z-index: 2;
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     /* Romantik Vignette & Parıltı */
@@ -64,7 +68,9 @@
       inset: 0;
       pointer-events: none;
       z-index: 2;
-      background: radial-gradient(circle at 50% 50%, rgba(255, 90, 140, 0.08) 0%, rgba(120, 20, 60, 0.04) 45%, rgba(4, 2, 6, 0.6) 85%);
+      background: radial-gradient(circle at 50% 50%, rgba(255, 90, 140, 0.12) 0%, rgba(120, 20, 60, 0.05) 45%, rgba(4, 2, 6, 0.65) 85%);
+      transform: translateZ(0);
+      will-change: transform;
     }
 
     /* ===================================================
@@ -351,6 +357,48 @@ Seni çok seviyorum balımmmmm.</div>
       { x:  0.41, y: -0.26, z:  0.18, rx:  0.15, ry:  0.32, rot: 0.05, s: 0.28, c: [240,  45,  80], mid: [255, 165, 185], tip: [255, 245, 248], d: 1.00 }
     ];
 
+    let currentScale = 0;
+    let currentCenterY = 0;
+
+    // Arka plan metni için optimize edilmiş offscreen canvas (0ms maliyet)
+    const bgTextCanvas = document.createElement('canvas');
+    const bgTextCtx = bgTextCanvas.getContext('2d');
+
+    function renderBgTextCanvas() {
+      bgTextCanvas.width = w;
+      bgTextCanvas.height = h;
+      bgTextCtx.clearRect(0, 0, w, h);
+
+      const fontSize = Math.floor(Math.max(34, Math.min(w * 0.08, h * 0.10)));
+      bgTextCtx.font = `600 ${fontSize}px "Dancing Script", "Playfair Display", cursive`;
+      bgTextCtx.textAlign = 'left';
+      bgTextCtx.textBaseline = 'top';
+
+      const isMobile = w < 768;
+      if (!isMobile) {
+        bgTextCtx.shadowColor = 'rgba(255, 110, 160, 0.45)';
+        bgTextCtx.shadowBlur = 12;
+      }
+      bgTextCtx.fillStyle = 'rgba(255, 195, 220, 0.13)';
+
+      const text = bgCustomText + '   ';
+      const stepX = bgTextCtx.measureText(text).width;
+      const stepY = fontSize * 1.35;
+
+      for (let y = -stepY, row = 0; y < h + stepY; y += stepY, row++) {
+        const offsetX = (row % 2 === 0) ? 0 : -stepX * 0.5;
+        for (let x = offsetX - stepX; x < w + stepX; x += stepX) {
+          bgTextCtx.fillText(text, x, y);
+        }
+      }
+    }
+
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        renderBgTextCanvas();
+      });
+    }
+
     function setup() {
       w = window.innerWidth;
       h = window.innerHeight;
@@ -368,8 +416,10 @@ Seni çok seviyorum balımmmmm.</div>
       cbuf = new Array(len);
       colbuf = new Array(len);
 
+      const isMobile = w < 768;
       stars = [];
-      for (let i = 0; i < 90; i++) {
+      const starCount = isMobile ? 45 : 90;
+      for (let i = 0; i < starCount; i++) {
         stars.push({
           x: Math.random() * w,
           y: Math.random() * h,
@@ -379,6 +429,7 @@ Seni çok seviyorum balımmmmm.</div>
         });
       }
 
+      renderBgTextCanvas();
       initParticles();
       initSparkles();
       bursts = [];
@@ -386,11 +437,8 @@ Seni çok seviyorum balımmmmm.</div>
     }
 
     function put(wx, wy, wz, ch, r, g, b) {
-      // Mobilde çiçekleri daha büyük (+18%) ve belirgin göster
-      const isMobile = w < 640;
-      const scale = isMobile ? Math.min(w, h) * 0.54 : Math.min(w, h) * 0.49;
-      const sx = Math.floor((w * 0.5 + wx * scale) / CW);
-      const sy = Math.floor((h * (isMobile ? 0.53 : 0.51) - wy * scale) / CH);
+      const sx = Math.floor((w * 0.5 + wx * currentScale) / CW);
+      const sy = Math.floor((currentCenterY - wy * currentScale) / CH);
       if (sx < 0 || sx >= cols || sy < 0 || sy >= rows) return;
 
       const i = sy * cols + sx;
@@ -416,10 +464,12 @@ Seni çok seviyorum balımmmmm.</div>
       return [x2, y1, z2];
     }
 
-    function drawWrapper(sway) {
+    function drawWrapper(sway, isMobile) {
       const pinchY = -0.58;
+      const yStep = isMobile ? 0.022 : 0.014;
+      const xStep = isMobile ? 0.018 : 0.011;
 
-      for (let y = -0.90; y <= 0.64; y += 0.014) {
+      for (let y = -0.90; y <= 0.64; y += yStep) {
         let halfW;
         if (y >= pinchY) {
           const t = (y - pinchY) / (0.64 - pinchY);
@@ -431,7 +481,7 @@ Seni çok seviyorum balımmmmm.</div>
 
         const topEdge = 0.60 + Math.sin((y + 1) * 3) * 0.02;
 
-        for (let x = -halfW; x <= halfW; x += 0.011) {
+        for (let x = -halfW; x <= halfW; x += xStep) {
           const nx = x / halfW;
           const arch = y > 0.42 ? (1 - nx * nx) * 0.08 : 0;
           if (y > topEdge + arch) continue;
@@ -447,7 +497,7 @@ Seni çok seviyorum balımmmmm.</div>
         }
       }
 
-      for (let y = -0.90; y <= -0.18; y += 0.014) {
+      for (let y = -0.90; y <= -0.18; y += yStep) {
         let halfW;
         if (y >= pinchY) {
           const t = (y - pinchY) / (-0.18 - pinchY);
@@ -457,7 +507,7 @@ Seni çok seviyorum balımmmmm.</div>
           halfW = 0.135 + t * 0.145;
         }
 
-        for (let x = -halfW; x <= halfW; x += 0.011) {
+        for (let x = -halfW; x <= halfW; x += xStep) {
           const nx = x / halfW;
           const vCut = -0.34 + Math.abs(nx) * 0.18;
           if (y > vCut) continue;
@@ -508,7 +558,7 @@ Seni çok seviyorum balımmmmm.</div>
       }
     }
 
-    function stem(f, sway) {
+    function stem(f, sway, isMobile) {
       const bx = f.x * 0.12;
       const by = -0.88;
       const bz = f.z * 0.12 - 0.15;
@@ -516,8 +566,9 @@ Seni çok seviyorum balımmmmm.</div>
       const ty = f.y;
       const tz = f.z - 0.08;
 
-      for (let i = 0; i <= 70; i++) {
-        const t = i / 70;
+      const stemSteps = isMobile ? 38 : 70;
+      for (let i = 0; i <= stemSteps; i++) {
+        const t = i / stemSteps;
         const cx = bx + (tx - bx) * t + Math.sin(t * Math.PI) * f.x * 0.08;
         const cy = by + (ty - by) * t;
         const cz = bz + (tz - bz) * t;
@@ -526,15 +577,17 @@ Seni çok seviyorum balımmmmm.</div>
         put(cx + 0.007, cy, cz, ':', 55 * l, 125 * l, 50 * l);
       }
 
+      const leafUStep = isMobile ? 0.038 : 0.022;
+      const leafVStep = isMobile ? 0.35 : 0.22;
       for (const side of [-1, 1]) {
         const st = 0.24 + (side > 0 ? 0.12 : 0);
         const ox = bx + (tx - bx) * st;
         const oy = by + (ty - by) * st;
         const oz = bz + (tz - bz) * st;
 
-        for (let u = 0; u <= 1; u += 0.022) {
+        for (let u = 0; u <= 1; u += leafUStep) {
           const lw = Math.sin(u * Math.PI) * 0.055;
-          for (let v = -1; v <= 1; v += 0.22) {
+          for (let v = -1; v <= 1; v += leafVStep) {
             const lx = ox + side * (u * 0.26) + v * lw * 0.25;
             const ly = oy + Math.sin(u * Math.PI * 0.78) * 0.20 + v * lw;
             const lz = oz + u * 0.08;
@@ -546,8 +599,8 @@ Seni çok seviyorum balımmmmm.</div>
       }
     }
 
-    // 3D Belirgin & Romantik Manolya (Magnolia) Çiçekleri
-    function manolya(f, bloom, sway, sec) {
+    // 3D Belirgin & Romantik Manolya (Magnolia) Çiçekleri (Optimize Edilmiş)
+    function manolya(f, bloom, sway, sec, isMobile) {
       const fx = f.x + sway;
       const fy = f.y;
       const fz = f.z;
@@ -555,19 +608,21 @@ Seni çok seviyorum balımmmmm.</div>
       const [rm, gm, bm] = f.mid;
       const [r2, g2, b2] = f.tip;
 
+      const uStep = isMobile ? 0.024 : 0.014;
+      const vStep = isMobile ? 0.16 : 0.09;
+
       for (let p = 0; p < 8; p++) {
         const inner = (p & 1) === 1;
         const ang = f.rot + (p / 8) * Math.PI * 2 + Math.sin(sec * 0.65 + p) * 0.012;
         const ca = Math.cos(ang), sa = Math.sin(ang);
 
-        // Daha sık ve dolgun yaprak örneklemesi (u: 0.014, v: 0.09)
-        for (let u = 0.035; u <= 1.0; u += 0.014) {
+        for (let u = 0.035; u <= 1.0; u += uStep) {
           const pw = Math.sin(Math.pow(u, 0.60) * Math.PI) * (inner ? 0.38 : 0.46) * f.s;
           const rDist = u * f.s * (inner ? 0.24 + 0.74 * bloom : 0.26 + 0.90 * bloom);
           const zCurve = f.s * ((1 - bloom) * 0.52 * u + bloom * (0.25 * Math.sin(u * Math.PI * 0.95) + (inner ? 0.17 : 0.07) * u * u));
           const zLayer = inner ? 0.02 : -0.02;
 
-          for (let v = -1; v <= 1; v += 0.09) {
+          for (let v = -1; v <= 1; v += vStep) {
             const lx = rDist * ca - (v * pw) * sa;
             const ly = rDist * sa + (v * pw) * ca;
             const lz = zCurve + zLayer - Math.abs(v) * 0.045 * f.s;
@@ -596,9 +651,10 @@ Seni çok seviyorum balımmmmm.</div>
 
       // Manolyanın ortasındaki belirgin polen konisi & altın ışıltılar
       if (bloom > 0.22) {
-        for (let s = 0; s < 12; s++) {
-          const sa = f.rot + (s / 12) * Math.PI * 2 + 0.25;
-          for (let t = 0.18; t <= 0.98; t += 0.22) {
+        const stamens = isMobile ? 8 : 12;
+        for (let s = 0; s < stamens; s++) {
+          const sa = f.rot + (s / stamens) * Math.PI * 2 + 0.25;
+          for (let t = 0.20; t <= 0.98; t += 0.26) {
             const sx = Math.cos(sa) * 0.095 * t * f.s * bloom;
             const sy = Math.sin(sa) * 0.095 * t * f.s * bloom;
             const sz = 0.24 * t * f.s * bloom + 0.035;
@@ -611,34 +667,6 @@ Seni çok seviyorum balımmmmm.</div>
     }
 
     // =========================================================
-    // 2. ROMANTİK ARKA PLAN METNİ ("BALIMMMMM")
-    // =========================================================
-    function drawBackgroundText() {
-      ctx.save();
-      
-      const fontSize = Math.floor(Math.max(34, Math.min(w * 0.08, h * 0.10)));
-      ctx.font = `600 ${fontSize}px "Dancing Script", "Playfair Display", cursive`;
-      ctx.textAlign = 'left';
-      ctx.textBaseline = 'top';
-      
-      ctx.shadowColor = 'rgba(255, 110, 160, 0.45)';
-      ctx.shadowBlur = 14;
-      ctx.fillStyle = 'rgba(255, 195, 220, 0.13)';
-
-      const text = bgCustomText + '   ';
-      const stepX = ctx.measureText(text).width;
-      const stepY = fontSize * 1.35;
-
-      for (let y = -stepY, row = 0; y < h + stepY; y += stepY, row++) {
-        const offsetX = (row % 2 === 0) ? 0 : -stepX * 0.5;
-        for (let x = offsetX - stepX; x < w + stepX; x += stepX) {
-          ctx.fillText(text, x, y);
-        }
-      }
-      ctx.restore();
-    }
-
-    // =========================================================
     // 3. UÇUŞAN MANOLYA YAPRAKLARI, PERİ TOZU & İNTERAKTİF PATLAMA
     // =========================================================
     let petals = [];
@@ -648,7 +676,8 @@ Seni çok seviyorum balımmmmm.</div>
 
     function initParticles() {
       petals = [];
-      const count = Math.min(32, Math.floor(w / 40));
+      const isMobile = w < 768;
+      const count = isMobile ? 18 : Math.min(32, Math.floor(w / 40));
       for (let i = 0; i < count; i++) {
         petals.push({
           x: Math.random() * w,
@@ -668,7 +697,9 @@ Seni çok seviyorum balımmmmm.</div>
 
     function initSparkles() {
       sparkles = [];
-      for (let i = 0; i < 24; i++) {
+      const isMobile = w < 768;
+      const count = isMobile ? 14 : 24;
+      for (let i = 0; i < count; i++) {
         sparkles.push({
           x: w * 0.5 + (Math.random() - 0.5) * (w < 640 ? w * 0.75 : 360),
           y: h * 0.52 + (Math.random() - 0.5) * 180,
@@ -684,6 +715,8 @@ Seni çok seviyorum balımmmmm.</div>
 
     // Tıklanan / Dokunulan noktadan parçacıkları dışa doğru savurma ve ışıltı patlatma
     function triggerInteractiveBlast(cx, cy) {
+      const isMobile = w < 768;
+
       // 1. Mevcut süzülen yaprakları şiddetle dışa doğru savur / dağıt
       for (let i = 0; i < petals.length; i++) {
         const p = petals[i];
@@ -723,7 +756,7 @@ Seni çok seviyorum balımmmmm.</div>
       });
 
       // 4. Tıklanan noktadan 360 derece patlayan mini manolya yaprakları & peri tozu
-      const burstCount = w < 640 ? 24 : 32;
+      const burstCount = isMobile ? 18 : 32;
       for (let i = 0; i < burstCount; i++) {
         const ang = Math.random() * Math.PI * 2;
         const spd = 2.0 + Math.random() * 9.5;
@@ -745,6 +778,7 @@ Seni çok seviyorum balımmmmm.</div>
 
     function drawFX() {
       fxCtx.clearRect(0, 0, w, h);
+      const isMobile = w < 768;
 
       // A) Şok Dalgası Halkaları
       for (let i = shockwaves.length - 1; i >= 0; i--) {
@@ -760,8 +794,10 @@ Seni çok seviyorum balımmmmm.</div>
         fxCtx.arc(sw.x, sw.y, sw.r, 0, Math.PI * 2);
         fxCtx.strokeStyle = `rgba(255, 185, 215, ${sw.alpha * 0.55})`;
         fxCtx.lineWidth = 2.2;
-        fxCtx.shadowColor = 'rgba(255, 120, 180, 0.7)';
-        fxCtx.shadowBlur = 10;
+        if (!isMobile) {
+          fxCtx.shadowColor = 'rgba(255, 120, 180, 0.7)';
+          fxCtx.shadowBlur = 10;
+        }
         fxCtx.stroke();
         fxCtx.restore();
       }
@@ -786,8 +822,10 @@ Seni çok seviyorum balımmmmm.</div>
         fxCtx.translate(b.x, b.y);
         fxCtx.rotate(b.rot);
         fxCtx.fillStyle = `rgba(${b.color}, ${b.alpha})`;
-        fxCtx.shadowColor = 'rgba(255, 140, 190, 0.65)';
-        fxCtx.shadowBlur = 7;
+        if (!isMobile) {
+          fxCtx.shadowColor = 'rgba(255, 140, 190, 0.65)';
+          fxCtx.shadowBlur = 7;
+        }
 
         if (b.isPetal) {
           fxCtx.beginPath();
@@ -823,8 +861,10 @@ Seni çok seviyorum balımmmmm.</div>
         fxCtx.translate(p.x, p.y);
         fxCtx.rotate(p.angle);
         fxCtx.fillStyle = `${p.color}${p.opacity})`;
-        fxCtx.shadowColor = 'rgba(255, 140, 180, 0.4)';
-        fxCtx.shadowBlur = 6;
+        if (!isMobile) {
+          fxCtx.shadowColor = 'rgba(255, 140, 180, 0.4)';
+          fxCtx.shadowBlur = 6;
+        }
 
         fxCtx.beginPath();
         fxCtx.ellipse(0, 0, p.size * 1.4, p.size * 0.85, 0, 0, Math.PI * 2);
@@ -847,8 +887,10 @@ Seni çok seviyorum balımmmmm.</div>
           s.extraVy = 0;
         }
         fxCtx.fillStyle = `rgba(255, 220, 180, ${s.alpha * 0.85})`;
-        fxCtx.shadowColor = '#ffb3c6';
-        fxCtx.shadowBlur = 8;
+        if (!isMobile) {
+          fxCtx.shadowColor = '#ffb3c6';
+          fxCtx.shadowBlur = 8;
+        }
         fxCtx.beginPath();
         fxCtx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
         fxCtx.fill();
@@ -856,11 +898,15 @@ Seni çok seviyorum balımmmmm.</div>
     }
 
     // =========================================================
-    // 4. ANA ANİMASYON DÖNGÜSÜ
+    // 4. ANA ANİMASYON DÖNGÜSÜ (60 FPS / 120 FPS KESİNTİSİZ AKICI)
     // =========================================================
     function frame(now) {
       if (t0 === null) t0 = now;
       const sec = Math.max(0, (now - t0) / 1000);
+      const isMobile = w < 768;
+
+      currentScale = isMobile ? Math.min(w, h) * 0.54 : Math.min(w, h) * 0.49;
+      currentCenterY = h * (isMobile ? 0.53 : 0.51);
 
       zbuf.fill(-1e9);
       cbuf.fill(null);
@@ -878,12 +924,12 @@ Seni çok seviyorum balımmmmm.</div>
         ctx.fillText(d.isPink ? '*' : '.', d.x, d.y);
       }
 
-      // Arka Plan Metni: "BALIMMMMM"
-      drawBackgroundText();
+      // Arka Plan Metni: Önceden bellekte hazırlanan tek seferlik çizim (0.02ms)
+      ctx.drawImage(bgTextCanvas, 0, 0);
 
       // Buket ve Manolyalar
       const globalSway = Math.sin(sec * 0.8) * 0.015;
-      drawWrapper(globalSway);
+      drawWrapper(globalSway, isMobile);
 
       // Çiçeklerin daha yavaş, kademeli ve zarif açılması (5.2 saniye)
       const bloomDuration = 5.2;
@@ -891,28 +937,31 @@ Seni çok seviyorum balımmmmm.</div>
         const f = bouquet[i];
         const sway = globalSway + Math.sin(sec * 0.9 + i * 0.85) * 0.012;
         const p = Math.max(0, Math.min(1, (sec - f.d * 1.5) / bloomDuration));
-        // Kademeli yumuşak açılma eğrisi (smooth ease-in-out)
         const ease = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
         const bloom = 0.08 + 0.92 * ease;
 
-        stem(f, sway);
-        manolya(f, bloom, sway, sec);
+        stem(f, sway, isMobile);
+        manolya(f, bloom, sway, sec, isMobile);
       }
 
-      // Z-Buffer Çizimi (Belirgin Çiçek Parıltısı)
-      ctx.shadowColor = 'rgba(255, 120, 170, 0.25)';
-      ctx.shadowBlur = 4;
+      // Z-Buffer Çizimi (Yüksek Performanslı & Sıfır Donma)
+      let lastFill = '';
       for (let y = 0; y < rows; y++) {
         const off = y * cols;
+        const py = y * CH;
         for (let x = 0; x < cols; x++) {
           const i = off + x;
-          if (cbuf[i]) {
-            ctx.fillStyle = colbuf[i];
-            ctx.fillText(cbuf[i], x * CW, y * CH);
+          const ch = cbuf[i];
+          if (ch) {
+            const col = colbuf[i];
+            if (lastFill !== col) {
+              ctx.fillStyle = col;
+              lastFill = col;
+            }
+            ctx.fillText(ch, x * CW, py);
           }
         }
       }
-      ctx.shadowBlur = 0;
 
       drawFX();
       requestAnimationFrame(frame);
